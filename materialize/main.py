@@ -51,7 +51,7 @@ class MainHandler(webapp2.RequestHandler):
     # Store that Entity in Datastore.
     cssi_user.put()
     name = {
-        
+
     }
     # Show confirmation to the user. Include a link back to the index.
     self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
@@ -59,5 +59,5 @@ class MainHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-  ('/', MainHandler)
+  ('/login.html', MainHandler)
 ], debug=True)
