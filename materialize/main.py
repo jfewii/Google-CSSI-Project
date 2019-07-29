@@ -2,7 +2,7 @@ import webapp2
 from google.appengine.api import users
 from model import CssiUser
 
-class MainHandler(webapp2.RequestHandler):
+class LoginPage(webapp2.RequestHandler):
   def get(self):
     user = users.get_current_user()
     if user:
@@ -37,7 +37,7 @@ class MainHandler(webapp2.RequestHandler):
 
     else:
       # If the user isn't logged in...
-      login_url = users.create_login_url('/')
+      login_url = users.create_login_url('/homepage.html')
       login_html_element = '<a href="%s">Sign in</a>' % login_url
       self.response.write('Please log in.<br>' + login_html_element)
 
@@ -50,14 +50,15 @@ class MainHandler(webapp2.RequestHandler):
         email=user.nickname())
     # Store that Entity in Datastore.
     cssi_user.put()
-    name = {
-
+    variable_dict = {
+    "login_url" : users.create_login_url()
     }
     # Show confirmation to the user. Include a link back to the index.
+    self.response.write(login_materialize.render(variable_dict))
     self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
         cssi_user.first_name)
 
 
 app = webapp2.WSGIApplication([
-  ('/login.html', MainHandler)
+  ('/login.html', LoginPage),
 ], debug=True)
