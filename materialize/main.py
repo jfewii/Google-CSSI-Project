@@ -2,6 +2,11 @@ import webapp2
 from google.appengine.api import users
 from model import CssiUser
 
+the_jinja_env = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
+    extensions=['jinja2.ext.autoescape'],
+    autoescape=True)
+
 class LoginPage(webapp2.RequestHandler):
   def get(self):
     user = users.get_current_user()
@@ -42,6 +47,7 @@ class LoginPage(webapp2.RequestHandler):
       self.response.write('Please log in.<br>' + login_html_element)
 
   def post(self):
+    login_template = the_jinja_env.get_template('login.html')
     user = users.get_current_user()
     # Create a new CSSI user.
     cssi_user = CssiUser(
@@ -51,14 +57,14 @@ class LoginPage(webapp2.RequestHandler):
     # Store that Entity in Datastore.
     cssi_user.put()
     variable_dict = {
-    "login_url" : users.create_login_url()
+    "login_url" : users.create_login_url("profile.html")
     }
     # Show confirmation to the user. Include a link back to the index.
-    self.response.write(login_materialize.render(variable_dict))
+    self.response.write(login_template.render(variable_dict))
     self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
         cssi_user.first_name)
 
 
 app = webapp2.WSGIApplication([
-  ('/login.html', LoginPage),
+  ('/login', LoginPage),
 ], debug=True)
