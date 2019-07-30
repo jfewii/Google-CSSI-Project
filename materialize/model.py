@@ -32,5 +32,5 @@ class ProfileStore(ndb.Model):
     income = ndb.StringProperty()
     sex_orient = ndb.StringProperty()
     city = ndb.StringProperty()
-    state = ndb.StringProperty()
+    
     zip_code = ndb.StringProperty()
