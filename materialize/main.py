@@ -2,9 +2,11 @@ import webapp2
 import jinja2
 import os
 import time
+import logging
 from model import UserDataStore
 from google.appengine.ext import ndb
 from model import MessageDataStore
+from model import ProfileStore
 
 the_jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -62,12 +64,24 @@ class ProfilePage(webapp2.RequestHandler):
             password = self.request.get('password')
             age = self.request.get('age')
             gender = self.request.get('gender')
+            race_indian = self.request.get('race_indian') == "on";
+            race_asian = self.request.get('race_asian') == "on";
+            race_african = self.request.get('race_african') == "on";
+            race_hawaiian = self.request.get('race_hawaiian') == "on";
+            race_white = self.request.get('race_white') == "on";
+            ethnicity_indian = self.request.get('ethnicity_indian') == "on";
+            ethnicity_asian = self.request.get('ethnicity_asian') == "on";
+            ethnicity_african = self.request.get('ethnicity_african') == "on";
+            ethnicity_hawaiian = self.request.get('ethnicity_hawaiian') == "on";
+            ethnicity_white = self.request.get('ethnicity_white') == "on";
             sex_orient = self.request.get('sex_orient')
             city = self.request.get('city')
+            state = self.request.get('state')
             zip_code = self.request.get('zip_code')
 
-            profileInfo = ProfileStore(first_name=first_name, last_name=last_name, username=username, password=password, age=age, gender=gender, sex_orient=sex_orient, city=city, zip_code=zip_code)
+            profileInfo = ProfileStore(first_name=first_name, last_name=last_name, username=username, password=password, age=age, gender=gender, race_indian=race_indian, race_asian=race_asian, race_african=race_african, race_hawaiian=race_hawaiian, race_white=race_white, ethnicity_indian=ethnicity_indian, ethnicity_asian=ethnicity_asian, ethnicity_african=ethnicity_african, ethnicity_hawaiian=ethnicity_hawaiian, ethnicity_white=ethnicity_white, sex_orient=sex_orient, city=city, state=state, zip_code=zip_code)
             profileInfo.put()
+            logging.info(profileInfo)
 
 class FriendsPage(webapp2.RequestHandler):
     def get(self):

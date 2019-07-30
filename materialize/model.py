@@ -26,11 +26,19 @@ class ProfileStore(ndb.Model):
     password = ndb.StringProperty()
     age = ndb.StringProperty()
     gender = ndb.StringProperty()
-
-
+    race_indian = ndb.BooleanProperty()
+    race_asian = ndb.BooleanProperty()
+    race_african = ndb.BooleanProperty()
+    race_hawaiian= ndb.BooleanProperty()
+    race_white = ndb.BooleanProperty()
+    ethnicity_indian = ndb.BooleanProperty()
+    ethnicity_asian = ndb.BooleanProperty()
+    ethnicity_african = ndb.BooleanProperty()
+    ethnicity_hawaiian= ndb.BooleanProperty()
+    ethnicity_white = ndb.BooleanProperty()
     industry = ndb.StringProperty()
     income = ndb.StringProperty()
     sex_orient = ndb.StringProperty()
     city = ndb.StringProperty()
-    
+    state = ndb.StringProperty()
     zip_code = ndb.StringProperty()
