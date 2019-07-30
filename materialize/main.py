@@ -22,18 +22,38 @@ class SignUpPage(webapp2.RequestHandler):
         signup_template = the_jinja_env.get_template('/signup.html')
         self.response.write(signup_template.render())
 
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems, options);
-  });
+class ProfilePage(webapp2.RequestHandler):
+        def get(self):
+            profile_template = the_jinja_env.get_template('/profile.html')
+            self.response.write(profile_template.render())
 
-Initialize collapsible (uncomment the lines below if you use the dropdown variation)
-var collapsibleElem = document.querySelector('.collapsible');
-var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
+class FriendsPage(webapp2.RequestHandler):
+    def get(self):
+        friends_template = the_jinja_env.get_template('/friends.html')
+        self.response.write(friends_template.render())
 
+class MessagesPage(webapp2.RequestHandler):
+    def get(self):
+        messages_template = the_jinja_env.get_template('/messages.html')
+        self.response.write(messages_template.render())
+
+class AboutPage(webapp2.RequestHandler):
+    def get(self):
+        about_template = the_jinja_env.get_template('/aboutus.html')
+        self.response.write(about_template.render())
+
+class SuggestionsPage(webapp2.RequestHandler):
+    def get(self):
+        suggestion_template = the_jinja_env.get_template('/suggestions.html')
+        self.response.write(suggestion_template.render())
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/login', LoginPage),
-    ('/signup', SignUpPage) #this maps the root url to the Main Page Handler
+    ('/signup', SignUpPage),
+    ('/profile', ProfilePage),
+    ('/friends', FriendsPage),
+    ('/messages', MessagesPage),
+    ('/aboutus', AboutPage),
+    ('/suggestions', SuggestionsPage)
 ], debug=True)
