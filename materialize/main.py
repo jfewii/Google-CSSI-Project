@@ -22,6 +22,16 @@ class SignUpPage(webapp2.RequestHandler):
         signup_template = the_jinja_env.get_template('/signup.html')
         self.response.write(signup_template.render())
 
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems, options);
+  });
+
+Initialize collapsible (uncomment the lines below if you use the dropdown variation)
+var collapsibleElem = document.querySelector('.collapsible');
+var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
+
+
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/login', LoginPage),
