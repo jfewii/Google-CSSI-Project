@@ -1,8 +1,10 @@
 import webapp2
 import jinja2
 import os
+import time
 from model import UserDataStore
 from google.appengine.ext import ndb
+from model import MessageDataStore
 
 the_jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -57,6 +59,23 @@ class FriendsPage(webapp2.RequestHandler):
     def get(self):
         friends_template = the_jinja_env.get_template('/friends.html')
         self.response.write(friends_template.render())
+
+    def post(self):
+        friends_template = the_jinja_env.get_template('/friends.html')
+        status = self.request.get("CurrentStatus")
+        timeStamp = self.request.get("StatusTime")
+
+        messagestore = MessageDataStore(CurrentStatus=status)
+        messagestore.put()
+        time.sleep(0.1)
+
+        status_query = MessageDataStore.query().order(-MessageDataStore.StatusTime)
+        messagecollection = status_query.fetch()
+
+        the_variable_dict = {
+        'statuses': messagecollection,
+        }
+        self.response.write(friends_template.render(the_variable_dict))
 
 class MessagesPage(webapp2.RequestHandler):
     def get(self):

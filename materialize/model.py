@@ -12,3 +12,8 @@ from google.appengine.ext import ndb
 class UserDataStore(ndb.Model):
     username = ndb.StringProperty()
     psw = ndb.StringProperty()
+
+
+class MessageDataStore(ndb.Model):
+    CurrentStatus = ndb.StringProperty()
+    StatusTime = ndb.DateTimeProperty(auto_now_add=True)
