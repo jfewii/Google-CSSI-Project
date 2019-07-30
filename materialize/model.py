@@ -12,6 +12,7 @@ from google.appengine.ext import ndb
 class UserDataStore(ndb.Model):
     username = ndb.StringProperty()
     psw = ndb.StringProperty()
+<<<<<<< HEAD
 
 class ProfileStore(ndb.Model):
     first_name = ndb.StringProperty()
@@ -32,3 +33,5 @@ class ProfileStore(ndb.Model):
     def get_profile_info(self):
         return "hello " + self.first_name + " " + self.last_name
 >>>>>>> 8bfb283948d30462d6c83c1e23e2ac8d0fb8718f
+=======
+>>>>>>> 858a97f4ef2be728c160b7cbec92b33ff2b21d26
