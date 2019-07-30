@@ -56,12 +56,13 @@ class FriendsPage(webapp2.RequestHandler):
     def post(self):
         friends_template = the_jinja_env.get_template('/friends.html')
         status = self.request.get("CurrentStatus")
+        timeStamp = self.request.get("StatusTime")
 
         messagestore = MessageDataStore(CurrentStatus=status)
         messagestore.put()
         time.sleep(0.1)
 
-        status_query = MessageDataStore.query().order(MessageDataStore.StatusTime)
+        status_query = MessageDataStore.query().order(-MessageDataStore.StatusTime)
         messagecollection = status_query.fetch()
 
         the_variable_dict = {

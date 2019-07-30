@@ -28,7 +28,10 @@
       <input type="submit" value="Submit">
     </form>
     {% for status in statuses %}
+      {{status.StatusTime.strftime('%R %m-%d-%Y')}}
+      <br>
       {{status.CurrentStatus}}
+      <br>
       <br>
     {% endfor %}
     <!--JavaScript at end of body for optimized loading-->
