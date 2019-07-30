@@ -10,11 +10,6 @@
   </head>
 
   <body>
-    <form action="/friends.html">
-      Status:<br>
-      <input type="text" name="your-current-status"><br>
-      <input type="submit" value="Submit">
-    </form>
     <nav>
       <div class="nav-wrapper light-blue accent-4">
         <a href="/" class="brand-logo">Logo</a>
@@ -27,6 +22,11 @@
         </ul>
       </div>
     </nav>
+    <form action="/friends" target="_self" method="post">
+      Status:<br>
+      <input type="text" name="your-current-status"><br>
+      <input type="submit" value="Submit">
+    </form>
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
   </body>
