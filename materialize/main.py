@@ -55,6 +55,20 @@ class ProfilePage(webapp2.RequestHandler):
             profile_template = the_jinja_env.get_template('/profile.html')
             self.response.write(profile_template.render())
 
+        def post(self):
+            first_name = self.request.get('first_name')
+            last_name = self.request.get('last_name')
+            username = self.request.get('username')
+            password = self.request.get('password')
+            age = self.request.get('age')
+            gender = self.request.get('gender')
+            sex_orient = self.request.get('sex_orient')
+            city = self.request.get('city')
+            zip_code = self.request.get('zip_code')
+
+            profileInfo = ProfileStore(first_name=first_name, last_name=last_name, username=username, password=password, age=age, gender=gender, sex_orient=sex_orient, city=city, zip_code=zip_code)
+            profileInfo.put()
+
 class FriendsPage(webapp2.RequestHandler):
     def get(self):
         friends_template = the_jinja_env.get_template('/friends.html')
