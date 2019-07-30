@@ -20,7 +20,7 @@ class ProfileStore(ndb.Model):
     password = ndb.StringProperty()
     age = ndb.StringProperty()
     gender = ndb.StringProperty()
-
+    
 
     industry = ndb.StringProperty()
     income = ndb.StringProperty()
