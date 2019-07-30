@@ -17,7 +17,11 @@ class MainPage(webapp2.RequestHandler):
 class LoginPage(webapp2.RequestHandler):
     def get(self):
         login_template = the_jinja_env.get_template('/login.html')
-        self.response.write(login_template.render())
+        error = self.request.get('error')
+        new_dic = {
+            'errormessage': error
+        }
+        self.response.write(login_template.render(new_dic))
 
     def post(self):
         username_query = UserDataStore.query()
@@ -26,6 +30,9 @@ class LoginPage(webapp2.RequestHandler):
         for x in users:
             if x.psw == self.request.get('psw') and x.username == self.request.get('uname'):
                 self.redirect('/profile')
+                return
+        self.redirect('/login?error=not-found')
+        return
 
 class SignUpPage(webapp2.RequestHandler):
     def get(self):
