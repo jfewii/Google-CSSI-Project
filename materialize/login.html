@@ -27,13 +27,14 @@
 
 /* Set a style for all buttons */
         button {
-          background-color: #4CAF50;
-          color: white;
+          background-color: white;
+          color: black;
           padding: 14px 20px;
           margin: 8px 0;
           border: none;
           cursor: pointer;
           width: 100%;
+          border-style: solid;
         }
 
 /* Add a hover effect for buttons */
@@ -45,7 +46,7 @@
         .cancelbtn {
           width: auto;
           padding: 10px 18px;
-          background-color: #f44336;
+          background-color: white;
         }
 
 /* Add padding to containers */
@@ -71,31 +72,23 @@
 }
       </style>
     </head>
-    <body class="grey darken-4">
-      <form action="/profile">
+    <body class="white">
+      <form action="/login" method='post'>
           <div class="container">
             <label for="uname"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="uname" style='color: white' required>
+            <input type="text" placeholder="Enter Username" name="uname" style='color: black' required>
 
             <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
+            <input type="password" placeholder="Enter Password" name="psw" required style='color: black'>
 
-            <button type="submit">Login</button>
-            <label>
-              <input type="checkbox" checked="checked" name="remember"> Remember me
-            </label>
+            <button type="submit" style:'color: black'>Login</button>
           </div>
 
-          <div class="container" style="background-color:#f1f1f1">
+          <div class="container" style="background-color:white">
             <button type="button" class="cancelbtn" onclick="window.location.href='/'">Cancel</button>
             <span class="psw">Forgot <a href="#">password?</a></span>
           </div>
       </form>
-        <!-- <p class="center">LOGO</p>
-        <p class="center">SLOGAN</p>
-        <p class="center">Sign in to continue</p>
-        <a href={{login_url}}>log in</a> -->
-      <!--JavaScript at end of body for optimized loading-->
       <script type="text/javascript" src="js/materialize.min.js"></script>
   </body>
   </html>

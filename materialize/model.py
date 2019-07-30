@@ -20,7 +20,7 @@ class ProfileStore(ndb.Model):
     password = ndb.StringProperty()
     age = ndb.StringProperty()
     gender = ndb.StringProperty()
-
+    
 
     industry = ndb.StringProperty()
     income = ndb.StringProperty()
@@ -31,3 +31,4 @@ class ProfileStore(ndb.Model):
 
     def get_profile_info(self):
         return "hello " + self.first_name + " " + self.last_name
+>>>>>>> 8bfb283948d30462d6c83c1e23e2ac8d0fb8718f

@@ -1,6 +1,8 @@
 import webapp2
 import jinja2
 import os
+from model import UserDataStore
+from google.appengine.ext import ndb
 
 the_jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -17,10 +19,27 @@ class LoginPage(webapp2.RequestHandler):
         login_template = the_jinja_env.get_template('/login.html')
         self.response.write(login_template.render())
 
+    def post(self):
+        username_query = UserDataStore.query()
+        users = username_query.fetch()
+        print(users)
+        for x in users:
+            if x.psw == self.request.get('psw') and x.username == self.request.get('uname'):
+                self.redirect('/profile')
+
 class SignUpPage(webapp2.RequestHandler):
     def get(self):
         signup_template = the_jinja_env.get_template('/signup.html')
         self.response.write(signup_template.render())
+
+    def post(self):
+        username = self.request.get('username')
+        password = self.request.get('psw')
+        passwordRepeat = self.request.get('psw-repeat')
+
+        userlogin = UserDataStore(username=username, psw=password)
+        userlogin.put()
+        self.redirect('/login')
 
 class ProfilePage(webapp2.RequestHandler):
         def get(self):
@@ -47,6 +66,8 @@ class SuggestionsPage(webapp2.RequestHandler):
         suggestion_template = the_jinja_env.get_template('/suggestions.html')
         self.response.write(suggestion_template.render())
 
+
+
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/login', LoginPage),
@@ -55,5 +76,5 @@ app = webapp2.WSGIApplication([
     ('/friends', FriendsPage),
     ('/messages', MessagesPage),
     ('/aboutus', AboutPage),
-    ('/suggestions', SuggestionsPage)
+    ('/suggestions', SuggestionsPage),
 ], debug=True)
