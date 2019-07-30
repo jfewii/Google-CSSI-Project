@@ -70,9 +70,17 @@
           width: 100%;
         }
 }
+      h4 {
+        font-size: 15px;
+        text-align: center;
+        color: red;
+      }
       </style>
     </head>
     <body class="white">
+      {% if errormessage %}
+      <center><h4>Incorrect Username or Password. Try again.</h4></center>
+      {% endif %}
       <form action="/login" method='post'>
           <div class="container">
             <label for="uname"><b>Username</b></label>
