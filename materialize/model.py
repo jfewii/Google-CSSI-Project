@@ -12,3 +12,4 @@ from google.appengine.ext import ndb
 class UserDataStore(ndb.Model):
     username = ndb.StringProperty()
     psw = ndb.StringProperty()
+    
