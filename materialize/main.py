@@ -84,20 +84,6 @@ class LoginPage(webapp2.RequestHandler):
     #     self.redirect('/login?error=not-found')
     #     return
 
-class SignUpPage(webapp2.RequestHandler):
-    def get(self):
-        signup_template = the_jinja_env.get_template('/signup.html')
-        self.response.write(signup_template.render())
-
-    def post(self):
-        email = self.request.get('email')
-        username = self.request.get('username')
-        password = self.request.get('psw')
-        passwordRepeat = self.request.get('psw-repeat')
-
-        # userlogin = UserDataStore(username=username, psw=password)
-        # userlogin.put()
-        self.redirect('/login')
 
 class ProfilePage(webapp2.RequestHandler):
         def get(self):
@@ -177,7 +163,6 @@ class SuggestionsPage(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/login', MainHandler),
-    ('/signup', SignUpPage),
     ('/profile', ProfilePage),
     ('/friends', FriendsPage),
     ('/messages', MessagesPage),
