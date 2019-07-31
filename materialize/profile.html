@@ -38,31 +38,31 @@
     <form class="col s11" id="profile_form" action="/profile" method="post">
       <div class="row">
         <div class="input-field col s6">
-          <input name="first_name" type="text" class="validate">
+          <input name="first_name" type="text" class="validate" {% if profileInfo %} value={{profileInfo.first_name}} {% endif %}>
           <label for="first_name">First Name</label>
         </div>
         <div class="input-field col s6">
-          <input name="last_name" type="text" class="validate">
+          <input name="last_name" type="text" class="validate" {% if profileInfo %} value={{profileInfo.last_name}} {% endif %}>
           <label for="last_name">Last Name</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <input name="username" type="text" class="validate">
+          <input name="username" type="text" class="validate" {% if profileInfo %} value={{profileInfo.username}} {% endif %}>
           <label for="username">Username</label>
         </div>
         <div class="input-field col s6">
-          <input name="password" type="password" class="validate">
+          <input name="password" type="password" class="validate" {% if profileInfo %} value={{profileInfo.password}} {% endif %}>
           <label for="password">Password</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <input name="age" type="text" class="validate">
+          <input name="age" type="text" class="validate" {% if profileInfo %} value={{profileInfo.age}} {% endif %}>
           <label for="age">Age</label>
         </div>
         <div class="input-field col s6">
-          <input name="gender" type="text" class="validate">
+          <input name="gender" type="text" class="validate" {% if profileInfo %} value={{profileInfo.gender}} {% endif %}>
           <label for="gender">Gender</label>
         </div>
       </div>
