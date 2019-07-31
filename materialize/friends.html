@@ -22,8 +22,12 @@
         </ul>
       </div>
     </nav>
+    <div class="container">
+       <!-- Page Content goes here -->
     <form action="/friends" target="_self" method="post">
+      <br>
       Status:<br>
+      <br>
       <input type="text" name="CurrentStatus"><br>
       <input type="submit" value="Submit">
     </form>
@@ -31,10 +35,12 @@
       {{status.StatusTime|datetimefilter}}
       <br>
       {{status.CurrentStatus}}
+      <hr>
       <br>
       <br>
     {% endfor %}
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
+     </div>
   </body>
 </html>
