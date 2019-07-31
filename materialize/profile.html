@@ -57,13 +57,17 @@
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s4">
           <input name="age" type="text" class="validate" {% if profileInfo %} value={{profileInfo.age}} {% endif %}>
           <label for="age">Age</label>
         </div>
-        <div class="input-field col s6">
+        <div class="input-field col s4">
           <input name="gender" type="text" class="validate" {% if profileInfo %} value={{profileInfo.gender}} {% endif %}>
           <label for="gender">Gender</label>
+        </div>
+        <div class="input-field col s4">
+          <input name="sex_orient" type="text" class="validate" {% if profileInfo %} value={{profileInfo.sex_orient}} {% endif %}>
+          <label for="sex_orient">Sexual Orientation</label>
         </div>
       </div>
       <div class="row">
@@ -119,22 +123,88 @@
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s4">
-          <input name="industry" type="text" class="validate">
-          <label for="industry">Industry</label>
+        <div class="input-field col s6">
+          Industry:
+          <p>
+            <label>
+              <input name="accounting" type="checkbox"/>
+              <span>Accounting and Legal</span>
+            </label><br>
+            <label>
+              <input name="business" type="checkbox"/>
+              <span>Business Services</span>
+            </label><br>
+            <label>
+              <input name="construction" type="checkbox"/>
+              <span>Construction / Repair / Maintenance</span>
+            </label><br>
+            <label>
+              <input name="finance" type="checkbox"/>
+              <span>Finance</span>
+            </label><br>
+            <label>
+              <input name="health_care" type="checkbox"/>
+              <span>Health Care</span>
+            </label><br>
+            <label>
+              <input name="media" type="checkbox"/>
+              <span>Media</span>
+            </label><br>
+            <label>
+              <input name="manufacturing" type="checkbox"/>
+              <span>Manufacturing</span>
+            </label><br>
+            <label>
+              <input name="restaraunt" type="checkbox"/>
+              <span>Restaraunts, Bars, and Food Services</span>
+            </label><br>
+            <label>
+              <input name="retail" type="checkbox"/>
+              <span>Retail</span>
+            </label><br>
+            <label>
+              <input name="technology" type="checkbox"/>
+              <span>Technology</span>
+            </label><br>
+            <label>
+              <input name="other" type="checkbox"/>
+              <span>Other</span>
+            </label>
+          </p>
         </div>
-        <div class="input-field col s4">
-          <input name="income" type="text" class="validate">
-          <label for="income">Income</label>
-        </div>
-        <div class="input-field col s4">
-          <input name="sex_orient" type="text" class="validate">
-          <label for="sex_orient">Sexual Orientation</label>
+        <div class="input-field col s6">
+          Income:
+          <p>
+            <label>
+              <input name="25k" type="checkbox"/>
+              <span>$0 - 24,999</span>
+            </label><br>
+            <label>
+              <input name="50k" type="checkbox"/>
+              <span>$25,000 - 49,999</span>
+            </label><br>
+            <label>
+              <input name="75k" type="checkbox"/>
+              <span>$50,000 - 74,999</span>
+            </label><br>
+            <label>
+              <input name="100k" type="checkbox"/>
+              <span>$75,000 - 99,999</span>
+            </label><br>
+            <label>
+              <input name="150k" type="checkbox"/>
+              <span>$100,000 - 149,999</span>
+            </label><br>
+            <label>
+              <input name="150k+" type="checkbox"/>
+              <span>$150,000+</span>
+            </label><br>
+          </p>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s4">
-          <input name="city" type="text" class="validate">
+          <input name="city" type="text" class="validate" {% if profileInfo %} value={{profileInfo.city}} {% endif %}>
           <label for="city">City</label>
         </div>
         <div class="input-field col s4">
@@ -194,7 +264,7 @@
           </select>
         </div>
         <div class="input-field col s4">
-          <input name="zip_code" type="text" class="validate">
+          <input name="zip_code" type="text" class="validate" {% if profileInfo %} value={{profileInfo.zip_code}} {% endif %}>
           <label for="zip_code">Zip Code</label>
         </div>
       </div>
