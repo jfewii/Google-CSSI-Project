@@ -3,6 +3,7 @@
   <head>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abel|Amatic+SC|Bitter|Shadows+Into+Light&display=swap" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
@@ -11,7 +12,6 @@
     <style media="screen">
       #profile_form {
         margin: 10px;
-        border: 1px solid;
       }
       h1 {
         margin-left: 20px;
@@ -21,19 +21,19 @@
 
   <body>
     <nav>
-      <div class="nav-wrapper light-blue accent-4">
-        <a href="/" class="brand-logo">Logo</a>
+      <div class="nav-wrapper black">
+        <a href="/" class="brand-logo" style="font-family: Bitter">MeMe</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="/profile">Profile</a></li>
-          <li><a href="/friends">Friends</a></li>
-          <li><a href="/suggestions">Suggestions</a></li>
-          <li><a href="/messages">Messages</a></li>
-          <li><a href="/aboutus">About Us</a></li>
+          <li><a href="/profile" style="font-family: Bitter">Profile</a></li>
+          <li><a href="/friends" style="font-family: Bitter">Friends</a></li>
+          <li><a href="/suggestions" style="font-family: Bitter">Suggestions</a></li>
+          <li><a href="/messages" style="font-family: Bitter">Messages</a></li>
+          <li><a href="/aboutus" style="font-family: Bitter">About Us</a></li>
+          <li><a href='/signout' style="font-family: Bitter">Sign Out<a/></li>
         </ul>
       </div>
     </nav>
-    <br>
-    <h1>My Profile</h1><br>
+    <h1 style='color: black; font-family: Bitter' >My Profile</h1><br>
     <div class="row">
     <form class="col s11" id="profile_form" action="/profile" method="post">
       <div class="row">
@@ -71,7 +71,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s6" style='color: black'>
           Race:
           <p>
             <label>
@@ -96,7 +96,7 @@
             </label>
           </p>
         </div>
-        <div class="input-field col s6">
+        <div class="input-field col s6" style='color: black'>
           Ethnicity:
           <p>
             <label>
@@ -123,7 +123,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s6" style='color: black'>
           Industry:
           <p>
             <label>
@@ -172,7 +172,7 @@
             </label>
           </p>
         </div>
-        <div class="input-field col s6">
+        <div class="input-field col s6" style='color: black'>
           Income:
           <p>
             <label>

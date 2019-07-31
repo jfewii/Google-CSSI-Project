@@ -27,7 +27,7 @@ class MainHandler(webapp2.RequestHandler):
       self.redirect('/profile')
     else:
       # If the user isn't logged in...
-      login_url = users.create_login_url('/')
+      login_url = users.create_login_url('/profile')
       login_html_element = '<a href="%s">Sign in</a>' % login_url
       # Prompt the user to sign in.
       self.response.write('Please log in.<br>' + login_html_element)
@@ -178,6 +178,16 @@ class SuggestionsPage(webapp2.RequestHandler):
         }
         self.response.write(suggestion_template.render(friends_dict))
 
+class SignoutPage(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        # If the user is logged in...
+        if user:
+          signout_link_html = '<a href="%s">sign out</a>' % (
+              users.create_logout_url('/'))
+          self.response.write(signout_link_html)
+          # If the user is registered...
+          self.redirect(users.create_logout_url('/'))
 
 
 app = webapp2.WSGIApplication([
@@ -189,4 +199,5 @@ app = webapp2.WSGIApplication([
     ('/messages', MessagesPage),
     ('/aboutus', AboutPage),
     ('/suggestions', SuggestionsPage),
+    ('/signout', SignoutPage),
 ], debug=True)

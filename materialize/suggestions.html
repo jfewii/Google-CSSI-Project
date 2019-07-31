@@ -2,29 +2,40 @@
   <head>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abel|Amatic+SC|Bitter|Shadows+Into+Light&display=swap" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style media="screen">
+      .friend {
+        border-bottom: 1px solid;
+      }
+      .friend_name {
+        margin-bottom: 3px;
+      }
+    </style>
   </head>
-
   <body>
-    <nav>
-      <div class="nav-wrapper light-blue accent-4">
-        <a href="/" class="brand-logo">Logo</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="/profile">Profile</a></li>
-          <li><a href="/friends">Friends</a></li>
-          <li><a href="/suggestions">Suggestions</a></li>
-          <li><a href="/messages">Messages</a></li>
-          <li><a href="/aboutus">About Us</a></li>
-        </ul>
-      </div>
-    </nav>
+      <nav>
+        <div class="nav-wrapper black">
+          <a href="/" class="brand-logo" style="font-family: Bitter">MeMe</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="/profile" style="font-family: Bitter">Profile</a></li>
+            <li><a href="/friends" style="font-family: Bitter">Friends</a></li>
+            <li><a href="/suggestions" style="font-family: Bitter">Suggestions</a></li>
+            <li><a href="/messages" style="font-family: Bitter">Messages</a></li>
+            <li><a href="/aboutus" style="font-family: Bitter">About Us</a></li>
+            <li><a href='/signout' style="font-family: Bitter">Sign Out<a/></li>
+          </ul>
+        </div>
+      </nav>
       {% for profile in friends %}
         <div class="friend">
-          <div class="friend_name">{{profile.first_name}}</div>
+          <br><div class="friend_name">{{profile.first_name + " " + profile.last_name }}</div>
+          <div class="friend_location">{{profile.city + ", " + profile.state}}</div>
+          </div>
         </div>
       {% endfor %}
     <!--JavaScript at end of body for optimized loading-->
