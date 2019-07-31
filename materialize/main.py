@@ -149,10 +149,11 @@ class FriendsPage(webapp2.RequestHandler):
 
     def post(self):
         friends_template = the_jinja_env.get_template('/friends.html')
+        user = users.get_current_user()
+        nickname = user.nickname()
         status = self.request.get("CurrentStatus")
-        timeStamp = self.request.get("StatusTime")
 
-        messagestore = MessageDataStore(CurrentStatus=status)
+        messagestore = MessageDataStore(CurrentStatus=status, username=nickname)
         messagestore.put()
         time.sleep(0.1)
 
