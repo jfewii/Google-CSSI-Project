@@ -208,7 +208,7 @@
           <label for="city">City</label>
         </div>
         <div class="input-field col s4">
-          <select class="browser-default" name="state">
+          <select class="browser-default" name="state" {% if profileInfo %} value={{profileInfo.state}} {% endif %}>
             <option value="" disabled selected>Enter your state</option>
             <option name="state" value="AL">Alabama</option>
           	<option name="state" value="AK">Alaska</option>
