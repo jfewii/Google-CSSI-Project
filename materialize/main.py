@@ -84,6 +84,20 @@ class LoginPage(webapp2.RequestHandler):
     #     self.redirect('/login?error=not-found')
     #     return
 
+class SignUpPage(webapp2.RequestHandler):
+    def get(self):
+        signup_template = the_jinja_env.get_template('/signup.html')
+        self.response.write(signup_template.render())
+
+    def post(self):
+        email = self.request.get('email')
+        username = self.request.get('username')
+        password = self.request.get('psw')
+        passwordRepeat = self.request.get('psw-repeat')
+
+        # userlogin = UserDataStore(username=username, psw=password)
+        # userlogin.put()
+        self.redirect('/login')
 
 class ProfilePage(webapp2.RequestHandler):
         def get(self):
@@ -155,8 +169,13 @@ class AboutPage(webapp2.RequestHandler):
 
 class SuggestionsPage(webapp2.RequestHandler):
     def get(self):
+        friend_query = ProfileStore.query()
+        friends = friend_query.fetch()
         suggestion_template = the_jinja_env.get_template('/suggestions.html')
-        self.response.write(suggestion_template.render())
+        friends_dict = {
+            "friends": friends
+        }
+        self.response.write(suggestion_template.render(friends_dict))
 
 class SignoutPage(webapp2.RequestHandler):
     def get(self):
@@ -173,6 +192,7 @@ class SignoutPage(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/login', MainHandler),
+    ('/signup', SignUpPage),
     ('/profile', ProfilePage),
     ('/friends', FriendsPage),
     ('/messages', MessagesPage),
