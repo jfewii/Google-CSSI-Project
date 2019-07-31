@@ -17,9 +17,7 @@
       }
     </style>
   </head>
-
   <body>
-<<<<<<< HEAD
       <nav>
         <div class="nav-wrapper black">
           <a href="/" class="brand-logo" style="font-family: Bitter">MeMe</a>
@@ -33,22 +31,7 @@
           </ul>
         </div>
       </nav>
-      {% for profile in ProfileStore %}
-=======
-    <nav>
-      <div class="nav-wrapper light-blue accent-4">
-        <a href="/" class="brand-logo">Logo</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="/profile">Profile</a></li>
-          <li><a href="/friends">Friends</a></li>
-          <li><a href="/suggestions">Suggestions</a></li>
-          <li><a href="/messages">Messages</a></li>
-          <li><a href="/aboutus">About Us</a></li>
-        </ul>
-      </div>
-    </nav>
       {% for profile in friends %}
->>>>>>> 5be70cc2fe83e2c9d986cdd44f40ca043aebc9bf
         <div class="friend">
           <br><div class="friend_name">{{profile.first_name + " " + profile.last_name }}</div>
           <div class="friend_location">{{profile.city + ", " + profile.state}}</div>
