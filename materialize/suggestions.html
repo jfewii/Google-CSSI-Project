@@ -14,13 +14,6 @@
       }
       .friend_name {
         margin-bottom: 3px;
-        width: 200px;
-      }
-      .friend_location {
-        width: 200px;
-      }
-      .connections {
-        top: 0;
       }
     </style>
   </head>
@@ -39,6 +32,7 @@
         </div>
       </nav>
       {% for profile in friends %}
+<<<<<<< HEAD
         <div class="friend" style="width: 100%">
           <div class="friend">
             <br><div class="friend_name">{{profile.first_name + " " + profile.last_name }}</div>
@@ -46,6 +40,11 @@
             <center>
               <div class="connections" style="width: 50%">number of connections would go here</div></center>
             <input type="submit" value="Add Friend">
+=======
+        <div class="friend">
+          <br><div class="friend_name">{{profile.first_name + " " + profile.last_name }}</div>
+          <div class="friend_location">{{profile.city + ", " + profile.state}}</div>
+>>>>>>> 69605839db68e037549d30e249ecca9c6bb8a60b
           </div>
         </div>
       {% endfor %}
