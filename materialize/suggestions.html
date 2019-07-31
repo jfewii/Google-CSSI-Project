@@ -33,11 +33,16 @@
       </nav>
       {% for profile in friends %}
         <div class="friend" style="width: 100%">
+          <div class="friend">
             <br><div class="friend_name">{{profile.first_name + " " + profile.last_name }}</div>
             <div class="friend_location" style="width: 50%">{{profile.city + ", " + profile.state}}</div>
             <center>
               <div class="connections" style="width: 50%">number of connections would go here</div></center>
             <input type="submit" value="Add Friend">
+        <div class="friend">
+          <br><div class="friend_name">{{profile.first_name + " " + profile.last_name }}</div>
+          <div class="friend_location">{{profile.city + ", " + profile.state}}</div>
+
           </div>
         </div>
       {% endfor %}
