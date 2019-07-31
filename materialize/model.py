@@ -24,6 +24,7 @@ class CssiUser(ndb.Model):
 
 
 class MessageDataStore(ndb.Model):
+    username = ndb.StringProperty()
     CurrentStatus = ndb.StringProperty()
     StatusTime = ndb.DateTimeProperty(auto_now_add=True)
 
