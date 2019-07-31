@@ -52,3 +52,4 @@ class ProfileStore(ndb.Model):
     city = ndb.StringProperty()
     state = ndb.StringProperty()
     zip_code = ndb.StringProperty()
+    email = ndb.StringProperty()
