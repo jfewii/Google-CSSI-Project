@@ -8,10 +8,19 @@
 #   email = ndb.StringProperty()
 
 from google.appengine.ext import ndb
+from google.appengine.api import users
+import webapp2
 
-class UserDataStore(ndb.Model):
-    username = ndb.StringProperty()
-    psw = ndb.StringProperty()
+class CssiUser(ndb.Model):
+  username= ndb.StringProperty()
+  psw = ndb.StringProperty()
+  email = ndb.StringProperty()
+
+
+
+# class UserDataStore(ndb.Model):
+    # username = ndb.StringProperty()
+    # psw = ndb.StringProperty()
 
 
 class MessageDataStore(ndb.Model):

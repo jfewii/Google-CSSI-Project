@@ -5,10 +5,45 @@ import time
 import logging
 import pytz
 from pytz import timezone
-from model import UserDataStore
+# from model import UserDataStore
 from google.appengine.ext import ndb
 from model import MessageDataStore
 from model import ProfileStore
+from model import CssiUser
+from google.appengine.api import users
+
+class MainHandler(webapp2.RequestHandler):
+  def get(self):
+    user = users.get_current_user()
+    # If the user is logged in...
+    if user:
+      signout_link_html = '<a href="%s">sign out</a>' % (
+          users.create_logout_url('/'))
+      email_address = user.nickname()
+      cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
+      self.response.write(signout_link_html)
+      # If the user is registered...
+      print('does this worl')
+      self.redirect('/profile')
+    else:
+      # If the user isn't logged in...
+      login_url = users.create_login_url('/')
+      login_html_element = '<a href="%s">Sign in</a>' % login_url
+      # Prompt the user to sign in.
+      self.response.write('Please log in.<br>' + login_html_element)
+
+  def post(self):
+    # Code to handle a first-time registration from the form:
+    user = users.get_current_user()
+    cssi_user = CssiUser(
+        username=self.request.get('username'),
+        psw=self.request.get('psw'),
+        email=user.nickname())
+    cssi_user.put()
+    self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
+        cssi_user.username)
+
+
 
 def datetimefilter(value, format="%R %m-%d-%Y"):
     tz = pytz.timezone('US/Pacific') # timezone you want to convert to from UTC
@@ -32,22 +67,22 @@ class MainPage(webapp2.RequestHandler):
 class LoginPage(webapp2.RequestHandler):
     def get(self):
         login_template = the_jinja_env.get_template('/login.html')
-        error = self.request.get('error')
-        new_dic = {
-            'errormessage': error
-        }
-        self.response.write(login_template.render(new_dic))
-
-    def post(self):
-        username_query = UserDataStore.query()
-        users = username_query.fetch()
-        print(users)
-        for x in users:
-            if x.psw == self.request.get('psw') and x.username == self.request.get('uname'):
-                self.redirect('/profile')
-                return
-        self.redirect('/login?error=not-found')
-        return
+    #     error = self.request.get('error')
+    #     new_dic = {
+    #         'errormessage': error
+    #     }
+        self.response.write(login_template.render())
+    #
+    # def post(self):
+    #     username_query = UserDataStore.query()
+    #     users = username_query.fetch()
+    #     print(users)
+    #     for x in users:
+    #         if x.psw == self.request.get('psw') and x.username == self.request.get('uname'):
+    #             self.redirect('/profile')
+    #             return
+    #     self.redirect('/login?error=not-found')
+    #     return
 
 class SignUpPage(webapp2.RequestHandler):
     def get(self):
@@ -55,12 +90,13 @@ class SignUpPage(webapp2.RequestHandler):
         self.response.write(signup_template.render())
 
     def post(self):
+        email = self.request.get('email')
         username = self.request.get('username')
         password = self.request.get('psw')
         passwordRepeat = self.request.get('psw-repeat')
 
-        userlogin = UserDataStore(username=username, psw=password)
-        userlogin.put()
+        # userlogin = UserDataStore(username=username, psw=password)
+        # userlogin.put()
         self.redirect('/login')
 
 class ProfilePage(webapp2.RequestHandler):
@@ -140,7 +176,7 @@ class SuggestionsPage(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
-    ('/login', LoginPage),
+    ('/login', MainHandler),
     ('/signup', SignUpPage),
     ('/profile', ProfilePage),
     ('/friends', FriendsPage),
