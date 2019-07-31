@@ -28,7 +28,7 @@
       <input type="submit" value="Submit">
     </form>
     {% for status in statuses %}
-      {{status.StatusTime.strftime('%R %m-%d-%Y')}}
+      {{status.StatusTime|datetimefilter}}
       <br>
       {{status.CurrentStatus}}
       <br>

@@ -3,15 +3,26 @@ import jinja2
 import os
 import time
 import logging
+import pytz
+from pytz import timezone
 from model import UserDataStore
 from google.appengine.ext import ndb
 from model import MessageDataStore
 from model import ProfileStore
 
+def datetimefilter(value, format="%R %m-%d-%Y"):
+    tz = pytz.timezone('US/Pacific') # timezone you want to convert to from UTC
+    utc = pytz.timezone('UTC')
+    value = utc.localize(value, is_dst=None).astimezone(pytz.utc)
+    local_dt = value.astimezone(tz)
+    return local_dt.strftime(format)
+
 the_jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
+
+the_jinja_env.filters["datetimefilter"]=datetimefilter
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
