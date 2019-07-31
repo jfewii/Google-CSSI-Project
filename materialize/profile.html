@@ -75,23 +75,23 @@
           Race:
           <p>
             <label>
-              <input name="race_indian" type="checkbox"/>
+              <input name="race_indian" type="checkbox"/ {% if profileInfo.race_indian %} checked {% endif %}>
               <span>American Indian or Alaskan Native</span>
             </label><br>
             <label>
-              <input name="race_asian" type="checkbox"/>
+              <input name="race_asian" type="checkbox"/ {% if profileInfo.race_asian %} checked {% endif %}>
               <span>Asian</span>
             </label><br>
             <label>
-              <input name="race_african" type="checkbox"/>
+              <input name="race_african" type="checkbox"/ {% if profileInfo.race_african %} checked {% endif %}>
               <span>Black or African American</span>
             </label><br>
             <label>
-              <input name="race_hawaiian" type="checkbox"/>
+              <input name="race_hawaiian" type="checkbox"/ {% if profileInfo.race_hawaiian %} checked {% endif %}>
               <span>Native Hawaiian or Other Pacific Islander</span>
             </label><br>
             <label>
-              <input name="race_white" type="checkbox"/>
+              <input name="race_white" type="checkbox"/ {% if profileInfo.race_white %} checked {% endif %}>
               <span>White</span>
             </label>
           </p>
@@ -100,23 +100,23 @@
           Ethnicity:
           <p>
             <label>
-              <input name="ethnicity_indian" type="checkbox"/>
+              <input name="ethnicity_indian" type="checkbox"/ {% if profileInfo.ethnicity_indian %} checked {% endif %}>
               <span>American Indian or Alaskan Native</span>
             </label><br>
             <label>
-              <input name="ethnicity_asian" type="checkbox"/>
+              <input name="ethnicity_asian" type="checkbox"/ {% if profileInfo.ethnicity_asian %} checked {% endif %}>
               <span>Asian</span>
             </label><br>
             <label>
-              <input name="ethnicity_african" type="checkbox"/>
+              <input name="ethnicity_african" type="checkbox"/ {% if profileInfo.ethnicity_african %} checked {% endif %}>
               <span>Black or African American</span>
             </label><br>
             <label>
-              <input name="ethnicity_hawaiian" type="checkbox"/>
+              <input name="ethnicity_hawaiian" type="checkbox"/ {% if profileInfo.ethnicity_hawaiian %} checked {% endif %}>
               <span>Native Hawaiian or Other Pacific Islander</span>
             </label><br>
             <label>
-              <input name="ethnicity_white" type="checkbox"/>
+              <input name="ethnicity_white" type="checkbox"/ {% if profileInfo.ethnicity_white %} checked {% endif %}>
               <span>White</span>
             </label>
           </p>
@@ -127,47 +127,47 @@
           Industry:
           <p>
             <label>
-              <input name="accounting" type="checkbox"/>
+              <input name="accounting" type="checkbox"/ {% if profileInfo.accounting %} checked {% endif %}>
               <span>Accounting and Legal</span>
             </label><br>
             <label>
-              <input name="business" type="checkbox"/>
+              <input name="business" type="checkbox"/ {% if profileInfo.business %} checked {% endif %}>
               <span>Business Services</span>
             </label><br>
             <label>
-              <input name="construction" type="checkbox"/>
+              <input name="construction" type="checkbox"/ {% if profileInfo.construction %} checked {% endif %}>
               <span>Construction / Repair / Maintenance</span>
             </label><br>
             <label>
-              <input name="finance" type="checkbox"/>
+              <input name="finance" type="checkbox"/ {% if profileInfo.finance %} checked {% endif %}>
               <span>Finance</span>
             </label><br>
             <label>
-              <input name="health_care" type="checkbox"/>
+              <input name="health_care" type="checkbox"/ {% if profileInfo.health_care %} checked {% endif %}>
               <span>Health Care</span>
             </label><br>
             <label>
-              <input name="media" type="checkbox"/>
+              <input name="media" type="checkbox"/ {% if profileInfo.media %} checked {% endif %}>
               <span>Media</span>
             </label><br>
             <label>
-              <input name="manufacturing" type="checkbox"/>
+              <input name="manufacturing" type="checkbox"/ {% if profileInfo.manufacturing %} checked {% endif %}>
               <span>Manufacturing</span>
             </label><br>
             <label>
-              <input name="restaraunt" type="checkbox"/>
+              <input name="restaraunt" type="checkbox"/ {% if profileInfo.restaraunt %} checked {% endif %}>
               <span>Restaraunts, Bars, and Food Services</span>
             </label><br>
             <label>
-              <input name="retail" type="checkbox"/>
+              <input name="retail" type="checkbox"/ {% if profileInfo.retail %} checked {% endif %}>
               <span>Retail</span>
             </label><br>
             <label>
-              <input name="technology" type="checkbox"/>
+              <input name="technology" type="checkbox"/ {% if profileInfo.technology %} checked {% endif %}>
               <span>Technology</span>
             </label><br>
             <label>
-              <input name="other" type="checkbox"/>
+              <input name="other" type="checkbox"/ {% if profileInfo.other %} checked {% endif %}>
               <span>Other</span>
             </label>
           </p>
