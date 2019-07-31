@@ -126,7 +126,8 @@ class ProfilePage(webapp2.RequestHandler):
             state = self.request.get('state')
             zip_code = self.request.get('zip_code')
 
-            profileInfo = ProfileStore(first_name=first_name, last_name=last_name, username=username, password=password, age=age, gender=gender, race_indian=race_indian, race_asian=race_asian, race_african=race_african, race_hawaiian=race_hawaiian, race_white=race_white, ethnicity_indian=ethnicity_indian, ethnicity_asian=ethnicity_asian, ethnicity_african=ethnicity_african, ethnicity_hawaiian=ethnicity_hawaiian, ethnicity_white=ethnicity_white, sex_orient=sex_orient, city=city, state=state, zip_code=zip_code)
+            profileInfo = ProfileStore(first_name=first_name, last_name=last_name,
+                                        username=username, password=password, age=age, gender=gender, race_indian=race_indian, race_asian=race_asian, race_african=race_african, race_hawaiian=race_hawaiian, race_white=race_white, ethnicity_indian=ethnicity_indian, ethnicity_asian=ethnicity_asian, ethnicity_african=ethnicity_african, ethnicity_hawaiian=ethnicity_hawaiian, ethnicity_white=ethnicity_white, sex_orient=sex_orient, city=city, state=state, zip_code=zip_code)
             profileInfo.put()
             logging.info(profileInfo)
             profilelog = {
@@ -134,6 +135,9 @@ class ProfilePage(webapp2.RequestHandler):
             }
             profile_template = the_jinja_env.get_template('/profile.html')
             self.response.write(profile_template.render(profilelog))
+
+            first_name = profileInfo.first_name
+
 
 class FriendsPage(webapp2.RequestHandler):
     def get(self):
