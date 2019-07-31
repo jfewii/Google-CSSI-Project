@@ -128,7 +128,6 @@ class ProfilePage(webapp2.RequestHandler):
 
             profileInfo = ProfileStore(first_name=first_name, last_name=last_name, username=username, password=password, age=age, gender=gender, race_indian=race_indian, race_asian=race_asian, race_african=race_african, race_hawaiian=race_hawaiian, race_white=race_white, ethnicity_indian=ethnicity_indian, ethnicity_asian=ethnicity_asian, ethnicity_african=ethnicity_african, ethnicity_hawaiian=ethnicity_hawaiian, ethnicity_white=ethnicity_white, sex_orient=sex_orient, city=city, state=state, zip_code=zip_code)
             profileInfo.put()
-            logging.info(self.request)
             logging.info(profileInfo)
             profilelog = {
                 'profileInfo': profileInfo
