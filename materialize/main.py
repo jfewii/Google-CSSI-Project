@@ -250,7 +250,8 @@ class AboutPage(webapp2.RequestHandler):
 
 class SuggestionsPage(webapp2.RequestHandler):
     def get(self):
-        friend_query = ProfileStore.query()
+        email = users.get_current_user().nickname()
+        friend_query = ProfileStore.query().filter(ProfileStore.email != email)
         friends = friend_query.fetch()
         suggestion_template = the_jinja_env.get_template('/suggestions.html')
         friends_dict = {
