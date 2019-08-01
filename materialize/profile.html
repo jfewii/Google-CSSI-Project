@@ -176,27 +176,27 @@
           Income:
           <p>
             <label>
-              <input name="25k" type="checkbox"/>
+              <input name="twofivek" type="checkbox"/ {% if profileInfo.twofivek %} checked {% endif %}>
               <span>$0 - 24,999</span>
             </label><br>
             <label>
-              <input name="50k" type="checkbox"/>
+              <input name="fiveok" type="checkbox"/ {% if profileInfo.fiveok %} checked {% endif %}>
               <span>$25,000 - 49,999</span>
             </label><br>
             <label>
-              <input name="75k" type="checkbox"/>
+              <input name="sevenfivek" type="checkbox"/ {% if profileInfo.sevenfivek %} checked {% endif %}>
               <span>$50,000 - 74,999</span>
             </label><br>
             <label>
-              <input name="100k" type="checkbox"/>
+              <input name="onehunnidk" type="checkbox"/ {% if profileInfo.onehunnidk %} checked {% endif %}>
               <span>$75,000 - 99,999</span>
             </label><br>
             <label>
-              <input name="150k" type="checkbox"/>
+              <input name="onefiftyk" type="checkbox"/ {% if profileInfo.onefiftyk %} checked {% endif %}>
               <span>$100,000 - 149,999</span>
             </label><br>
             <label>
-              <input name="150k+" type="checkbox"/>
+              <input name="bigballerbrand" type="checkbox"/ {% if profileInfo.bigballerbrand %} checked {% endif %}>
               <span>$150,000+</span>
             </label><br>
           </p>
@@ -208,59 +208,59 @@
           <label for="city">City</label>
         </div>
         <div class="input-field col s4">
-          <select class="browser-default" name="state" {% if profileInfo %} value={{profileInfo.state}} {% endif %}>
+          <select class="browser-default" name="state">
             <option value="" disabled selected>Enter your state</option>
-            <option name="state" value="AL">Alabama</option>
-          	<option name="state" value="AK">Alaska</option>
-          	<option name="state" value="AZ">Arizona</option>
-          	<option name="state" value="AR">Arkansas</option>
-          	<option name="state" value="CA">California</option>
-          	<option name="state" value="CO">Colorado</option>
-          	<option name="state" value="CT">Connecticut</option>
-          	<option name="state" value="DE">Delaware</option>
-          	<option name="state" value="DC">District Of Columbia</option>
-          	<option name="state" value="FL">Florida</option>
-          	<option name="state" value="GA">Georgia</option>
-          	<option name="state" value="HI">Hawaii</option>
-          	<option name="state" value="ID">Idaho</option>
-          	<option name="state" value="IL">Illinois</option>
-          	<option name="state" value="IN">Indiana</option>
-          	<option name="state" value="IA">Iowa</option>
-          	<option name="state" value="KS">Kansas</option>
-          	<option name="state" value="KY">Kentucky</option>
-          	<option name="state" value="LA">Louisiana</option>
-          	<option name="state" value="ME">Maine</option>
-          	<option name="state" value="MD">Maryland</option>
-          	<option name="state" value="MA">Massachusetts</option>
-          	<option name="state" value="MI">Michigan</option>
-          	<option name="state" value="MN">Minnesota</option>
-          	<option name="state" value="MS">Mississippi</option>
-          	<option name="state" value="MO">Missouri</option>
-          	<option name="state" value="MT">Montana</option>
-          	<option name="state" value="NE">Nebraska</option>
-          	<option name="state" value="NV">Nevada</option>
-          	<option name="state" value="NH">New Hampshire</option>
-          	<option name="state" value="NJ">New Jersey</option>
-          	<option name="state" value="NM">New Mexico</option>
-          	<option name="state" value="NY">New York</option>
-          	<option name="state" value="NC">North Carolina</option>
-          	<option name="state" value="ND">North Dakota</option>
-          	<option name="state" value="OH">Ohio</option>
-          	<option name="state" value="OK">Oklahoma</option>
-          	<option name="state" value="OR">Oregon</option>
-          	<option name="state" value="PA">Pennsylvania</option>
-          	<option name="state" value="RI">Rhode Island</option>
-          	<option name="state" value="SC">South Carolina</option>
-          	<option name="state" value="SD">South Dakota</option>
-          	<option name="state" value="TN">Tennessee</option>
-          	<option name="state" value="TX">Texas</option>
-          	<option name="state" value="UT">Utah</option>
-          	<option name="state" value="VT">Vermont</option>
-          	<option name="state" value="VA">Virginia</option>
-          	<option name="state" value="WA">Washington</option>
-          	<option name="state" value="WV">West Virginia</option>
-          	<option name="state" value="WI">Wisconsin</option>
-          	<option name="state" value="WY">Wyoming</option>
+            <option name="state" value="AL" {% if profileInfo.state=='AL' %} selected='selected' {% endif %}>Alabama</option>
+          	<option name="state" value="AK" {% if profileInfo.state=='AK' %} selected='selected' {% endif %}>Alaska</option>
+          	<option name="state" value="AZ" {% if profileInfo.state=='AZ' %} selected='selected' {% endif %}>Arizona</option>
+          	<option name="state" value="AR" {% if profileInfo.state=='AR' %} selected='selected' {% endif %}>Arkansas</option>
+          	<option name="state" value="CA" {% if profileInfo.state=='CA' %} selected='selected' {% endif %}>California</option>
+          	<option name="state" value="CO" {% if profileInfo.state=='CO' %} selected='selected' {% endif %}>Colorado</option>
+          	<option name="state" value="CT" {% if profileInfo.state=='CT' %} selected='selected' {% endif %}>Connecticut</option>
+          	<option name="state" value="DE" {% if profileInfo.state=='DE' %} selected='selected' {% endif %}>Delaware</option>
+          	<option name="state" value="DC" {% if profileInfo.state=='DC' %} selected='selected' {% endif %}>District Of Columbia</option>
+          	<option name="state" value="FL" {% if profileInfo.state=='FL' %} selected='selected' {% endif %}>Florida</option>
+          	<option name="state" value="GA" {% if profileInfo.state=='GA' %} selected='selected' {% endif %}>Georgia</option>
+          	<option name="state" value="HI" {% if profileInfo.state=='HI' %} selected='selected' {% endif %}>Hawaii</option>
+          	<option name="state" value="ID" {% if profileInfo.state=='ID' %} selected='selected' {% endif %}>Idaho</option>
+          	<option name="state" value="IL" {% if profileInfo.state=='IL' %} selected='selected' {% endif %}>Illinois</option>
+          	<option name="state" value="IN" {% if profileInfo.state=='IN' %} selected='selected' {% endif %}>Indiana</option>
+          	<option name="state" value="IA" {% if profileInfo.state=='IA' %} selected='selected' {% endif %}>Iowa</option>
+          	<option name="state" value="KS" {% if profileInfo.state=='KS' %} selected='selected' {% endif %}>Kansas</option>
+          	<option name="state" value="KY" {% if profileInfo.state=='KY' %} selected='selected' {% endif %}>Kentucky</option>
+          	<option name="state" value="LA" {% if profileInfo.state=='LA' %} selected='selected' {% endif %}>Louisiana</option>
+          	<option name="state" value="ME" {% if profileInfo.state=='ME' %} selected='selected' {% endif %}>Maine</option>
+          	<option name="state" value="MD" {% if profileInfo.state=='MD' %} selected='selected' {% endif %}>Maryland</option>
+          	<option name="state" value="MA" {% if profileInfo.state=='MA' %} selected='selected' {% endif %}>Massachusetts</option>
+          	<option name="state" value="MI" {% if profileInfo.state=='MI' %} selected='selected' {% endif %}>Michigan</option>
+          	<option name="state" value="MN" {% if profileInfo.state=='MN' %} selected='selected' {% endif %}>Minnesota</option>
+          	<option name="state" value="MS" {% if profileInfo.state=='MS' %} selected='selected' {% endif %}>Mississippi</option>
+          	<option name="state" value="MO" {% if profileInfo.state=='MO' %} selected='selected' {% endif %}>Missouri</option>
+          	<option name="state" value="MT" {% if profileInfo.state=='MT' %} selected='selected' {% endif %}>Montana</option>
+          	<option name="state" value="NE" {% if profileInfo.state=='NE' %} selected='selected' {% endif %}>Nebraska</option>
+          	<option name="state" value="NV" {% if profileInfo.state=='NV' %} selected='selected' {% endif %}>Nevada</option>
+          	<option name="state" value="NH" {% if profileInfo.state=='NH' %} selected='selected' {% endif %}>New Hampshire</option>
+          	<option name="state" value="NJ" {% if profileInfo.state=='NJ' %} selected='selected' {% endif %}>New Jersey</option>
+          	<option name="state" value="NM" {% if profileInfo.state=='NM' %} selected='selected' {% endif %}>New Mexico</option>
+          	<option name="state" value="NY" {% if profileInfo.state=='NY' %} selected='selected' {% endif %}>New York</option>
+          	<option name="state" value="NC" {% if profileInfo.state=='NC' %} selected='selected' {% endif %}>North Carolina</option>
+          	<option name="state" value="ND" {% if profileInfo.state=='ND' %} selected='selected' {% endif %}>North Dakota</option>
+          	<option name="state" value="OH" {% if profileInfo.state=='OH' %} selected='selected' {% endif %}>Ohio</option>
+          	<option name="state" value="OK" {% if profileInfo.state=='OK' %} selected='selected' {% endif %}>Oklahoma</option>
+          	<option name="state" value="OR" {% if profileInfo.state=='OR' %} selected='selected' {% endif %}>Oregon</option>
+          	<option name="state" value="PA" {% if profileInfo.state=='PA' %} selected='selected' {% endif %}>Pennsylvania</option>
+          	<option name="state" value="RI" {% if profileInfo.state=='RI' %} selected='selected' {% endif %}>Rhode Island</option>
+          	<option name="state" value="SC" {% if profileInfo.state=='SC' %} selected='selected' {% endif %}>South Carolina</option>
+          	<option name="state" value="SD" {% if profileInfo.state=='SD' %} selected='selected' {% endif %}>South Dakota</option>
+          	<option name="state" value="TN" {% if profileInfo.state=='TN' %} selected='selected' {% endif %}>Tennessee</option>
+          	<option name="state" value="TX" {% if profileInfo.state=='TX' %} selected='selected' {% endif %}>Texas</option>
+          	<option name="state" value="UT" {% if profileInfo.state=='UT' %} selected='selected' {% endif %}>Utah</option>
+          	<option name="state" value="VT" {% if profileInfo.state=='VT' %} selected='selected' {% endif %}>Vermont</option>
+          	<option name="state" value="VA" {% if profileInfo.state=='VA' %} selected='selected' {% endif %}>Virginia</option>
+          	<option name="state" value="WA" {% if profileInfo.state=='WA' %} selected='selected' {% endif %}>Washington</option>
+          	<option name="state" value="WV" {% if profileInfo.state=='WV' %} selected='selected' {% endif %}>West Virginia</option>
+          	<option name="state" value="WI" {% if profileInfo.state=='WI' %} selected='selected' {% endif %}>Wisconsin</option>
+          	<option name="state" value="WY" {% if profileInfo.state=='WY' %} selected='selected' {% endif %}>Wyoming</option>
           </select>
         </div>
         <div class="input-field col s4">
