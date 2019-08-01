@@ -247,7 +247,17 @@ class FriendsPage(webapp2.RequestHandler):
         friends_template = the_jinja_env.get_template('/friends.html')
         self.response.write(friends_template.render())
 
-
+    def post(self):
+        user = users.get_current_user()
+        email = users.get_current_user().nickname()
+        user_query = ProfileStore.query().filter(ProfileStore.email == email)
+        userProfile = user_query.fetch()[0]
+        friendKeyURLSafe = self.request.get("friend_key")
+        friendKey = ndb.Key(urlsafe=friendKeyURLSafe)
+        userProfile.friends.append(friendKey)
+        userProfile.put()
+        friendKey.get()
+        self.redirect('/friends')
 
 class AboutPage(webapp2.RequestHandler):
     def get(self):
@@ -264,6 +274,7 @@ class SuggestionsPage(webapp2.RequestHandler):
             "friends": friends
         }
         self.response.write(suggestion_template.render(friends_dict))
+
 
 class SignoutPage(webapp2.RequestHandler):
     def get(self):

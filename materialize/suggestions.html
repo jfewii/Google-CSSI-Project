@@ -34,7 +34,8 @@
       </div>
     </nav>
       {% for profile in friends %}
-        <div id="friend" style="width: 100%" class="col s6">
+      <form class="" action="/friends" method="post">
+        <div id="friend" style="width: 100%">
             <br><div id="friend_name" style='color: black; font-family: Bitter; font-size: 30px; margin-left: 3px'>{{profile.first_name + " " + profile.last_name }}</div>
             <div id="friend_location" style="width: 50%; color: black; font-family: Bitter; font-size: 18px" >
               <img src="https://static.thenounproject.com/png/215155-200.png" alt="" style="height: 15px; width: 15px; margin-left: 2px;">
@@ -98,8 +99,10 @@
               <img src="https://image.flaticon.com/icons/svg/921/921305.svg" alt="" style="height: 15px; width: 15px; margin-left: 2px;" >
               number of connections would go here
             </div><br>
-            <input type="submit" value="Add Friend" style="margin-bottom: 10px;">
+            <input type="hidden" value="{{profile.key.urlsafe()}}" name="friend_key">
+            <input type="submit" value="Add Friend" style="margin-bottom: 10px;" method="post">
         </div>
+        </form>
       {% endfor %}
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
