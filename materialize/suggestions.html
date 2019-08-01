@@ -9,10 +9,10 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <style media="screen">
-      .friend {
+      #friend {
         border-bottom: 1px solid;
       }
-      .friend_name {
+      #friend_name {
         margin-bottom: 3px;
       }
     </style>
@@ -32,11 +32,17 @@
         </div>
       </nav>
       {% for profile in friends %}
-        <div class="friend" style="width: 100%">
-            <br><div class="friend_name">{{profile.first_name + " " + profile.last_name }}</div>
-            <div class="friend_location" style="width: 50%">{{"Location: " + profile.city + ", " + profile.state}}</div>
-            <div class="friend_age">{{"Age: " + profile.age}}</div>
-            <div class="friend_race" style="width: 80%">
+        <div id="friend" style="width: 100%">
+            <br><div id="friend_name">{{profile.first_name + " " + profile.last_name }}</div>
+            <div id="friend_location" style="width: 50%">
+              <img src="https://static.thenounproject.com/png/215155-200.png" alt="" style="height: 15px; width: 15px;">
+              {{" " + profile.city + ", " + profile.state}}
+            </div>
+            <div id="friend_age">
+              <img src="https://cdn.onlinewebfonts.com/svg/img_86026.png" alt="" style="height: 15px; width: 15px; margin-left: 2px;">
+              {{" " + profile.age + " Years Old"}}
+            </div>
+            <div id="friend_race" style="width: 80%">
               {% if profile.race_indian==True %}
                 {{"Race: American Indian or Alaskan Native"}}
                 {% if profile.race_asian==True %}
@@ -85,7 +91,7 @@
                 {% endif %}
               {% endif %}
             </div>
-            <div class="connections" style="width: 50%">number of connections would go here</div>
+            <div id="connections" style="width: 50%">number of connections would go here</div>
             <input type="submit" value="Add Friend">
         </div>
       {% endfor %}

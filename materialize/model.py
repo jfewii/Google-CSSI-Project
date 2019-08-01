@@ -68,3 +68,4 @@ class ProfileStore(ndb.Model):
     state = ndb.StringProperty()
     zip_code = ndb.StringProperty()
     email = ndb.StringProperty()
+    friends = ndb.KeyProperty(kind='ProfileStore', repeated=True)
