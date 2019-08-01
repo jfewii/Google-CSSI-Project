@@ -216,19 +216,19 @@ class ProfilePage(webapp2.RequestHandler):
             self.response.write(profile_template.render(profilelog))
 
 
-class MessagePage(webapp2.RequestHandler):
+class MessagesPage(webapp2.RequestHandler):
     def get(self):
-        friends_template = the_jinja_env.get_template('/messages.html')
+        messages_template = the_jinja_env.get_template('/messages.html')
         status_query = MessageDataStore.query().order(-MessageDataStore.StatusTime)
         messagecollection = status_query.fetch()
 
         the_variable_dict = {
         'statuses': messagecollection,
         }
-        self.response.write(friends_template.render(the_variable_dict))
+        self.response.write(messages_template.render(the_variable_dict))
 
     def post(self):
-        friends_template = the_jinja_env.get_template('/messages.html')
+        messages_template = the_jinja_env.get_template('/messages.html')
         user = users.get_current_user()
         nickname = user.nickname()
         status = self.request.get("CurrentStatus")
@@ -241,8 +241,8 @@ class MessagePage(webapp2.RequestHandler):
 
 class FriendsPage(webapp2.RequestHandler):
     def get(self):
-        messages_template = the_jinja_env.get_template('/friends.html')
-        self.response.write(messages_template.render())
+        friends_template = the_jinja_env.get_template('/friends.html')
+        self.response.write(friends_template.render())
 
 class AboutPage(webapp2.RequestHandler):
     def get(self):
