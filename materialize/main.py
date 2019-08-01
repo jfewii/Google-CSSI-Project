@@ -27,24 +27,21 @@ class MainHandler(webapp2.RequestHandler):
       self.redirect('/profile')
     else:
       # If the user isn't logged in...
-      logindic = {
-        'login_url': users.create_login_url('/profile')
-      }
-      login_template = the_jinja_env.get_template('/login.html')
-      self.response.write(login_template.render(logindic))
       login_url = users.create_login_url('/profile')
+      login_html_element = '<a href="%s">Sign in</a>' % login_url
+      # Prompt the user to sign in.
+      self.response.write('Please log in.<br>' + login_html_element)
 
   def post(self):
     # Code to handle a first-time registration from the form:
-    # user = users.get_current_user()
-    # cssi_user = CssiUser(
-    #     username=self.request.get('username'),
-    #     psw=self.request.get('psw'),
-    #     email=user.nickname())
-    # cssi_user.put()
-    # self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
-    #     cssi_user.username)
-    self.redirect(users.create_login_url('/profile'))
+    user = users.get_current_user()
+    cssi_user = CssiUser(
+        username=self.request.get('username'),
+        psw=self.request.get('psw'),
+        email=user.nickname())
+    cssi_user.put()
+    self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
+        cssi_user.username)
 
 
 
@@ -152,15 +149,13 @@ class ProfilePage(webapp2.RequestHandler):
             state = self.request.get('state')
             zip_code = self.request.get('zip_code')
             email = users.get_current_user().nickname()
-
-            user = users.get_current_user()
-            user_email = user.nickname()
-            user_query = ProfileStore.query().filter(ProfileStore.username == user_email)
+            print("Email " + email)
+            user_query = ProfileStore.query().filter(ProfileStore.email == email)
             user_list = user_query.fetch()
 
-            print("user_email = " + user_email)
             print("user_list =" + str(user_list))
 
+            profileInfo = None
             if len(user_list) == 1 :
                 user_current = user_list[0]
                 user_current.first_name=first_name
@@ -202,7 +197,7 @@ class ProfilePage(webapp2.RequestHandler):
                 user_current.onefiftyk=onefiftyk
                 user_current.bigballerbrand=bigballerbrand
                 user_current.put()
-
+                profileInfo = user_current
 
             else:
                 profileInfo = ProfileStore(first_name=first_name, last_name=last_name,
@@ -214,7 +209,6 @@ class ProfilePage(webapp2.RequestHandler):
                                             bigballerbrand=bigballerbrand)
 
                 profileInfo.put()
-            logging.info(profileInfo)
             profilelog = {
                 'profileInfo': profileInfo
             }
@@ -222,19 +216,19 @@ class ProfilePage(webapp2.RequestHandler):
             self.response.write(profile_template.render(profilelog))
 
 
-class MessagesPage(webapp2.RequestHandler):
+class FriendsPage(webapp2.RequestHandler):
     def get(self):
-        messages_template = the_jinja_env.get_template('/messages.html')
+        friends_template = the_jinja_env.get_template('/friends.html')
         status_query = MessageDataStore.query().order(-MessageDataStore.StatusTime)
         messagecollection = status_query.fetch()
 
         the_variable_dict = {
         'statuses': messagecollection,
         }
-        self.response.write(messages_template.render(the_variable_dict))
+        self.response.write(friends_template.render(the_variable_dict))
 
     def post(self):
-        messages_template = the_jinja_env.get_template('/messages.html')
+        friends_template = the_jinja_env.get_template('/friends.html')
         user = users.get_current_user()
         nickname = user.nickname()
         status = self.request.get("CurrentStatus")
@@ -243,11 +237,11 @@ class MessagesPage(webapp2.RequestHandler):
         messagestore.put()
         time.sleep(0.1)
 
-        self.redirect('/messages')
+        self.redirect('/friends')
 
-class FriendsPage(webapp2.RequestHandler):
+class MessagesPage(webapp2.RequestHandler):
     def get(self):
-        messages_template = the_jinja_env.get_template('/friends.html')
+        messages_template = the_jinja_env.get_template('/messages.html')
         self.response.write(messages_template.render())
 
 class AboutPage(webapp2.RequestHandler):
