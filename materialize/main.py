@@ -27,21 +27,24 @@ class MainHandler(webapp2.RequestHandler):
       self.redirect('/profile')
     else:
       # If the user isn't logged in...
+      logindic = {
+        'login_url': users.create_login_url('/profile')
+      }
+      login_template = the_jinja_env.get_template('/login.html')
+      self.response.write(login_template.render(logindic))
       login_url = users.create_login_url('/profile')
-      login_html_element = '<a href="%s">Sign in</a>' % login_url
-      # Prompt the user to sign in.
-      self.response.write('Please log in.<br>' + login_html_element)
 
   def post(self):
     # Code to handle a first-time registration from the form:
-    user = users.get_current_user()
-    cssi_user = CssiUser(
-        username=self.request.get('username'),
-        psw=self.request.get('psw'),
-        email=user.nickname())
-    cssi_user.put()
-    self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
-        cssi_user.username)
+    # user = users.get_current_user()
+    # cssi_user = CssiUser(
+    #     username=self.request.get('username'),
+    #     psw=self.request.get('psw'),
+    #     email=user.nickname())
+    # cssi_user.put()
+    # self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
+    #     cssi_user.username)
+    self.redirect(users.create_login_url('/profile'))
 
 
 
