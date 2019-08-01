@@ -1,16 +1,23 @@
+<!DOCTYPE html>
 <html>
   <head>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Abel|Amatic+SC|Bitter|Shadows+Into+Light&display=swap" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link href="https://fonts.googleapis.com/css?family=Abel|Amatic+SC|Bitter|Shadows+Into+Light&display=swap" rel="stylesheet">
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+    .messagebody {
+      /* background-image: url(https://images.unsplash.com/photo-1505562130589-9879683e72da?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80); */
+      background-repeat: no-repeat;
+    }
+    </style>
   </head>
 
-  <body>
+  <body class='messagebody'>
     <nav>
       <div class="nav-wrapper black">
         <a href="/" class="brand-logo" style="font-family: Bitter">MeMe</a>
@@ -24,26 +31,8 @@
         </ul>
       </div>
     </nav>
-    <div class="container" style='color: black'>
-       <!-- Page Content goes here -->
-    <form action="/friends" target="_self" method="post" style='color: black'>
-      <br>
-      Status:<br>
-      <br>
-      <input type="text" name="CurrentStatus"><br>
-      <input type="submit" value="Submit">
-    </form>
-    {% for status in statuses %}
-      {{status.username}}
-      {{status.StatusTime|datetimefilter}}
-      <br>
-      {{status.CurrentStatus}}
-      <hr>
-      <br>
-      <br>
-    {% endfor %}
+
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
-     </div>
   </body>
 </html>
