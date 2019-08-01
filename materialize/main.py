@@ -150,15 +150,67 @@ class ProfilePage(webapp2.RequestHandler):
             zip_code = self.request.get('zip_code')
             email = users.get_current_user().nickname()
 
-            profileInfo = ProfileStore(first_name=first_name, last_name=last_name,
-                                        username=username, password=password, age=age, gender=gender, race_indian=race_indian, race_asian=race_asian, race_african=race_african, race_hawaiian=race_hawaiian, race_white=race_white, ethnicity_indian=ethnicity_indian, ethnicity_asian=ethnicity_asian, ethnicity_african=ethnicity_african, ethnicity_hawaiian=ethnicity_hawaiian, ethnicity_white=ethnicity_white, sex_orient=sex_orient, city=city, state=state, zip_code=zip_code, email=email,
-                                        accounting=accounting, business=business, construction=construction, finance=finance,
-                                        health_care=health_care, media=media, manufacturing=manufacturing, restaraunt=restaraunt,
-                                        retail=retail, technology=technology, other=other, twofivek=twofivek, fiveok=fiveok,
-                                        sevenfivek=sevenfivek, onehunnidk=onehunnidk, onefiftyk=onefiftyk,
-                                        bigballerbrand=bigballerbrand)
+            user = users.get_current_user()
+            user_email = user.nickname()
+            user_query = ProfileStore.query().filter(ProfileStore.username == user_email)
+            user_list = user_query.fetch()
 
-            profileInfo.put()
+            print("user_email = " + user_email)
+            print("user_list =" + str(user_list))
+
+            if len(user_list) == 1 :
+                user_current = user_list[0]
+                user_current.first_name=first_name
+                user_current.last_name=last_name
+                user_current.username=username
+                user_current.password=password
+                user_current.age=age
+                user_current.gender=gender
+                user_current.race_indian=race_indian
+                user_current.race_asian=race_asian
+                user_current.race_african=race_african
+                user_current.race_hawaiian=race_hawaiian
+                user_current.race_white=race_white
+                user_current.ethnicity_indian=ethnicity_indian
+                user_current.ethnicity_asian=ethnicity_asian
+                user_current.ethnicity_african=ethnicity_african
+                user_current.ethnicity_hawaiian=ethnicity_hawaiian
+                user_current.ethnicity_white=ethnicity_white
+                user_current.sex_orient=sex_orient
+                user_current.city=city
+                user_current.state=state
+                user_current.zip_code=zip_code
+                user_current.email=email
+                user_current.accounting=accounting
+                user_current.business=business
+                user_current.construction=construction
+                user_current.finance=finance
+                user_current.health_care=health_care
+                user_current.media=media
+                user_current.manufacturing=manufacturing
+                user_current.restaraunt=restaraunt
+                user_current.retail=retail
+                user_current.technology=technology
+                user_current.other=other
+                user_current.twofivek=twofivek
+                user_current.fiveok=fiveok
+                user_current.sevenfivek=sevenfivek
+                user_current.onehunnidk=onehunnidk
+                user_current.onefiftyk=onefiftyk
+                user_current.bigballerbrand=bigballerbrand
+                user_current.put()
+
+
+            else:
+                profileInfo = ProfileStore(first_name=first_name, last_name=last_name,
+                                            username=username, password=password, age=age, gender=gender, race_indian=race_indian, race_asian=race_asian, race_african=race_african, race_hawaiian=race_hawaiian, race_white=race_white, ethnicity_indian=ethnicity_indian, ethnicity_asian=ethnicity_asian, ethnicity_african=ethnicity_african, ethnicity_hawaiian=ethnicity_hawaiian, ethnicity_white=ethnicity_white, sex_orient=sex_orient, city=city, state=state, zip_code=zip_code, email=email,
+                                            accounting=accounting, business=business, construction=construction, finance=finance,
+                                            health_care=health_care, media=media, manufacturing=manufacturing, restaraunt=restaraunt,
+                                            retail=retail, technology=technology, other=other, twofivek=twofivek, fiveok=fiveok,
+                                            sevenfivek=sevenfivek, onehunnidk=onehunnidk, onefiftyk=onefiftyk,
+                                            bigballerbrand=bigballerbrand)
+
+                profileInfo.put()
             logging.info(profileInfo)
             profilelog = {
                 'profileInfo': profileInfo
