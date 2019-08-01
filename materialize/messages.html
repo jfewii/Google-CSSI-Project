@@ -24,13 +24,13 @@
         </ul>
       </div>
     </nav>
-    <div class="container" style='color: black'>
+    <div class="container" style='color: black;font-family: Abel;font-size: 16px '>
        <!-- Page Content goes here -->
     <form action="/messages" target="_self" method="post" style='color: black'>
       <br>
       Status:<br>
       <br>
-      <input type="text" name="CurrentStatus"><br>
+      <input type="text" name="CurrentStatus" style='font-family: Abel; font-size: 20px'><br>
       <input type="submit" value="Submit">
     </form>
     {% for status in statuses %}
