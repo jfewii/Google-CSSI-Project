@@ -34,9 +34,58 @@
       {% for profile in friends %}
         <div class="friend" style="width: 100%">
             <br><div class="friend_name">{{profile.first_name + " " + profile.last_name }}</div>
-            <div class="friend_location" style="width: 50%">{{profile.city + ", " + profile.state}}</div>
-            <center>
-              <div class="connections" style="width: 50%">number of connections would go here</div></center>
+            <div class="friend_location" style="width: 50%">{{"Location: " + profile.city + ", " + profile.state}}</div>
+            <div class="friend_age">{{"Age: " + profile.age}}</div>
+            <div class="friend_race" style="width: 80%">
+              {% if profile.race_indian==True %}
+                {{"Race: American Indian or Alaskan Native"}}
+                {% if profile.race_asian==True %}
+                  {{", Asian" }}
+                {% endif %}
+                {% if profile.race_african==True %}
+                  {{", Black or African American" }}
+                {% endif %}
+                {% if profile.race_hawaiian==True %}
+                  {{", Native Hawaiian or Other Pacific Islander" }}
+                {% endif %}
+                {% if profile.race_white==True %}
+                  {{", White" }}
+                {% endif %}
+              {% else %}
+                {% if profile.race_asian==True %}
+                  {{"Race: Asian" }}
+                  {% if profile.race_african==True %}
+                    {{", Black or African American" }}
+                  {% endif %}
+                  {% if profile.race_hawaiian==True %}
+                    {{", Native Hawaiian or Other Pacific Islander" }}
+                  {% endif %}
+                  {% if profile.race_white==True %}
+                    {{", White" }}
+                  {% endif %}
+                {% else %}
+                  {% if profile.race_african==True %}
+                    {{"Race: Black or African American, " }}
+                    {% if profile.race_hawaiian==True %}
+                      {{", Native Hawaiian or Other Pacific Islander" }}
+                    {% endif %}
+                    {% if profile.race_white==True %}
+                      {{", White" }}
+                    {% endif %}
+                  {% else %}
+                    {% if profile.race_hawaiian==True %}
+                      {{"Race: Native Hawaiian or Other Pacific Islander" }}
+                      {% if profile.race_white==True %}
+                        {{", White" }}
+                      {% endif %}
+                    {% else %}
+                      {{"Race: White" }}
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+            </div>
+            <div class="connections" style="width: 50%">number of connections would go here</div>
             <input type="submit" value="Add Friend">
         </div>
       {% endfor %}
