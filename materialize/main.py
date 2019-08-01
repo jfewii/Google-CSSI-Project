@@ -225,15 +225,21 @@ class MessagesPage(webapp2.RequestHandler):
         the_variable_dict = {
         'statuses': messagecollection,
         }
+        print(messagecollection)
         self.response.write(messages_template.render(the_variable_dict))
 
     def post(self):
         messages_template = the_jinja_env.get_template('/messages.html')
         user = users.get_current_user()
-        nickname = user.nickname()
+        email = users.get_current_user().nickname()
+        user_query = ProfileStore.query().filter(ProfileStore.email == email)
+        userProfile = user_query.fetch()[0]
+        # first_name = user.get('first_name')
+        # last_name = user.get('last_name')
+        print(userProfile)
         status = self.request.get("CurrentStatus")
 
-        messagestore = MessageDataStore(CurrentStatus=status, username=nickname)
+        messagestore = MessageDataStore(CurrentStatus=status, first_name=userProfile.first_name, last_name=userProfile.last_name,)
         messagestore.put()
         time.sleep(0.1)
 

@@ -34,7 +34,8 @@
       <input type="submit" value="Submit">
     </form>
     {% for status in statuses %}
-      {{status.username}}
+      {{status.first_name}}
+      {{status.last_name}}
       {{status.StatusTime|datetimefilter}}
       <br>
       {{status.CurrentStatus}}
