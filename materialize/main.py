@@ -27,24 +27,21 @@ class MainHandler(webapp2.RequestHandler):
       self.redirect('/profile')
     else:
       # If the user isn't logged in...
-      logindic = {
-        'login_url': users.create_login_url('/profile')
-      }
-      login_template = the_jinja_env.get_template('/login.html')
-      self.response.write(login_template.render(logindic))
       login_url = users.create_login_url('/profile')
+      login_html_element = '<a href="%s">Sign in</a>' % login_url
+      # Prompt the user to sign in.
+      self.response.write('Please log in.<br>' + login_html_element)
 
   def post(self):
     # Code to handle a first-time registration from the form:
-    # user = users.get_current_user()
-    # cssi_user = CssiUser(
-    #     username=self.request.get('username'),
-    #     psw=self.request.get('psw'),
-    #     email=user.nickname())
-    # cssi_user.put()
-    # self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
-    #     cssi_user.username)
-    self.redirect(users.create_login_url('/profile'))
+    user = users.get_current_user()
+    cssi_user = CssiUser(
+        username=self.request.get('username'),
+        psw=self.request.get('psw'),
+        email=user.nickname())
+    cssi_user.put()
+    self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
+        cssi_user.username)
 
 
 
@@ -152,17 +149,66 @@ class ProfilePage(webapp2.RequestHandler):
             state = self.request.get('state')
             zip_code = self.request.get('zip_code')
             email = users.get_current_user().nickname()
+            print("Email " + email)
+            user_query = ProfileStore.query().filter(ProfileStore.email == email)
+            user_list = user_query.fetch()
 
-            profileInfo = ProfileStore(first_name=first_name, last_name=last_name,
-                                        username=username, password=password, age=age, gender=gender, race_indian=race_indian, race_asian=race_asian, race_african=race_african, race_hawaiian=race_hawaiian, race_white=race_white, ethnicity_indian=ethnicity_indian, ethnicity_asian=ethnicity_asian, ethnicity_african=ethnicity_african, ethnicity_hawaiian=ethnicity_hawaiian, ethnicity_white=ethnicity_white, sex_orient=sex_orient, city=city, state=state, zip_code=zip_code, email=email,
-                                        accounting=accounting, business=business, construction=construction, finance=finance,
-                                        health_care=health_care, media=media, manufacturing=manufacturing, restaraunt=restaraunt,
-                                        retail=retail, technology=technology, other=other, twofivek=twofivek, fiveok=fiveok,
-                                        sevenfivek=sevenfivek, onehunnidk=onehunnidk, onefiftyk=onefiftyk,
-                                        bigballerbrand=bigballerbrand)
+            print("user_list =" + str(user_list))
 
-            profileInfo.put()
-            logging.info(profileInfo)
+            profileInfo = None
+            if len(user_list) == 1 :
+                user_current = user_list[0]
+                user_current.first_name=first_name
+                user_current.last_name=last_name
+                user_current.username=username
+                user_current.password=password
+                user_current.age=age
+                user_current.gender=gender
+                user_current.race_indian=race_indian
+                user_current.race_asian=race_asian
+                user_current.race_african=race_african
+                user_current.race_hawaiian=race_hawaiian
+                user_current.race_white=race_white
+                user_current.ethnicity_indian=ethnicity_indian
+                user_current.ethnicity_asian=ethnicity_asian
+                user_current.ethnicity_african=ethnicity_african
+                user_current.ethnicity_hawaiian=ethnicity_hawaiian
+                user_current.ethnicity_white=ethnicity_white
+                user_current.sex_orient=sex_orient
+                user_current.city=city
+                user_current.state=state
+                user_current.zip_code=zip_code
+                user_current.email=email
+                user_current.accounting=accounting
+                user_current.business=business
+                user_current.construction=construction
+                user_current.finance=finance
+                user_current.health_care=health_care
+                user_current.media=media
+                user_current.manufacturing=manufacturing
+                user_current.restaraunt=restaraunt
+                user_current.retail=retail
+                user_current.technology=technology
+                user_current.other=other
+                user_current.twofivek=twofivek
+                user_current.fiveok=fiveok
+                user_current.sevenfivek=sevenfivek
+                user_current.onehunnidk=onehunnidk
+                user_current.onefiftyk=onefiftyk
+                user_current.bigballerbrand=bigballerbrand
+                user_current.put()
+                profileInfo = user_current
+
+            else:
+                profileInfo = ProfileStore(first_name=first_name, last_name=last_name,
+                                            username=username, password=password, age=age, gender=gender, race_indian=race_indian, race_asian=race_asian, race_african=race_african, race_hawaiian=race_hawaiian, race_white=race_white, ethnicity_indian=ethnicity_indian, ethnicity_asian=ethnicity_asian, ethnicity_african=ethnicity_african, ethnicity_hawaiian=ethnicity_hawaiian, ethnicity_white=ethnicity_white, sex_orient=sex_orient, city=city, state=state, zip_code=zip_code, email=email,
+                                            accounting=accounting, business=business, construction=construction, finance=finance,
+                                            health_care=health_care, media=media, manufacturing=manufacturing, restaraunt=restaraunt,
+                                            retail=retail, technology=technology, other=other, twofivek=twofivek, fiveok=fiveok,
+                                            sevenfivek=sevenfivek, onehunnidk=onehunnidk, onefiftyk=onefiftyk,
+                                            bigballerbrand=bigballerbrand)
+
+                profileInfo.put()
             profilelog = {
                 'profileInfo': profileInfo
             }
@@ -170,19 +216,19 @@ class ProfilePage(webapp2.RequestHandler):
             self.response.write(profile_template.render(profilelog))
 
 
-class MessagesPage(webapp2.RequestHandler):
+class FriendsPage(webapp2.RequestHandler):
     def get(self):
-        messages_template = the_jinja_env.get_template('/messages.html')
+        friends_template = the_jinja_env.get_template('/friends.html')
         status_query = MessageDataStore.query().order(-MessageDataStore.StatusTime)
         messagecollection = status_query.fetch()
 
         the_variable_dict = {
         'statuses': messagecollection,
         }
-        self.response.write(messages_template.render(the_variable_dict))
+        self.response.write(friends_template.render(the_variable_dict))
 
     def post(self):
-        messages_template = the_jinja_env.get_template('/messages.html')
+        friends_template = the_jinja_env.get_template('/friends.html')
         user = users.get_current_user()
         nickname = user.nickname()
         status = self.request.get("CurrentStatus")
@@ -191,11 +237,11 @@ class MessagesPage(webapp2.RequestHandler):
         messagestore.put()
         time.sleep(0.1)
 
-        self.redirect('/messages')
+        self.redirect('/friends')
 
-class FriendsPage(webapp2.RequestHandler):
+class MessagesPage(webapp2.RequestHandler):
     def get(self):
-        messages_template = the_jinja_env.get_template('/friends.html')
+        messages_template = the_jinja_env.get_template('/messages.html')
         self.response.write(messages_template.render())
 
 class AboutPage(webapp2.RequestHandler):
