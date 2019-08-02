@@ -16,8 +16,17 @@
     }
     .col.s6 {
       border-right: 2px solid;
-      border-top: 2px solid;
+      border-top: 1px solid;
     }
+    #friend {
+      border-bottom: 1px solid;
+      border-color: black;
+    }
+    #friend_name {
+      margin-bottom: 3px;
+      border-color: black;
+    }
+
     </style>
   </head>
 
@@ -35,26 +44,38 @@
         </ul>
       </div>
     </nav>
-      <div class='row'>
-        {% for profile_key in friends %}
-        {% set profile = profile_key.get() %}
-          <div id="friend" class='col s6'>
-              <br><div id="friend_name" style='color: black; font-family: Bitter; font-size: 30px; margin-left: 3px'>{{profile.first_name + " " + profile.last_name }}</div>
-              <div id="friend_location" style="width: 50%; color: black; font-family: Bitter; font-size: 18px" >
-                <img src="https://static.thenounproject.com/png/215155-200.png" alt="" style="height: 15px; width: 15px; margin-left: 2px;">
-                {{" " + profile.city + ", " + profile.state}}
-              </div>
-              <div id="friend_age" style='color: black; font-family: Bitter; font-size: 18px'>
-                <img src="https://cdn.onlinewebfonts.com/svg/img_86026.png" alt="" style="height: 15px; width: 15px; margin-left: 2px;">
-                {{" " + profile.age + " Years Old"}}
-              </div>
-              <div id="friend_race" style="width: 80%; color: black; font-family: Bitter; font-size: 18px">
-                <img src="https://image.flaticon.com/icons/svg/32/32441.svg" alt="" style="height: 15px; width: 15px; margin-left: 2px;">
-                {% if profile.race_indian==True %}
-                  {{"Race: American Indian or Alaskan Native"}}
-                  {% if profile.race_asian==True %}
-                    {{", Asian" }}
-                  {% endif %}
+    <div class='row'>
+      {% for profile_key in friends %}
+      {% set profile = profile_key.get() %}
+        <div id="friend" class="col s6">
+            <br><div id="friend_name" style='color: black; font-family: Bitter; font-size: 30px; margin-left: 3px'>{{profile.first_name + " " + profile.last_name }}</div>
+            <div id="friend_location" style="width: 50%; color: black; font-family: Bitter; font-size: 18px" >
+              <img src="https://static.thenounproject.com/png/215155-200.png" alt="" style="height: 15px; width: 15px; margin-left: 2px;">
+              {{" " + profile.city + ", " + profile.state}}
+            </div>
+            <div id="friend_age" style='color: black; font-family: Bitter; font-size: 18px'>
+              <img src="https://cdn.onlinewebfonts.com/svg/img_86026.png" alt="" style="height: 15px; width: 15px; margin-left: 2px;">
+              {{" " + profile.age + " Years Old"}}
+            </div>
+            <div id="friend_race" style="width: 80%; color: black; font-family: Bitter; font-size: 18px">
+              <img src="https://image.flaticon.com/icons/svg/32/32441.svg" alt="" style="height: 15px; width: 15px; margin-left: 2px;">
+              {% if profile.race_indian==True %}
+                {{"Race: American Indian or Alaskan Native"}}
+                {% if profile.race_asian==True %}
+                  {{", Asian" }}
+                {% endif %}
+                {% if profile.race_african==True %}
+                  {{", Black or African American" }}
+                {% endif %}
+                {% if profile.race_hawaiian==True %}
+                  {{", Native Hawaiian or Other Pacific Islander" }}
+                {% endif %}
+                {% if profile.race_white==True %}
+                  {{", White" }}
+                {% endif %}
+              {% else %}
+                {% if profile.race_asian==True %}
+                  {{"Race: Asian" }}
                   {% if profile.race_african==True %}
                     {{", Black or African American" }}
                   {% endif %}
@@ -65,11 +86,8 @@
                     {{", White" }}
                   {% endif %}
                 {% else %}
-                  {% if profile.race_asian==True %}
-                    {{"Race: Asian" }}
-                    {% if profile.race_african==True %}
-                      {{", Black or African American" }}
-                    {% endif %}
+                  {% if profile.race_african==True %}
+                    {{"Race: Black or African American " }}
                     {% if profile.race_hawaiian==True %}
                       {{", Native Hawaiian or Other Pacific Islander" }}
                     {% endif %}
@@ -77,30 +95,21 @@
                       {{", White" }}
                     {% endif %}
                   {% else %}
-                    {% if profile.race_african==True %}
-                      {{"Race: Black or African American " }}
-                      {% if profile.race_hawaiian==True %}
-                        {{", Native Hawaiian or Other Pacific Islander" }}
-                      {% endif %}
+                    {% if profile.race_hawaiian==True %}
+                      {{"Race: Native Hawaiian or Other Pacific Islander" }}
                       {% if profile.race_white==True %}
                         {{", White" }}
                       {% endif %}
                     {% else %}
-                      {% if profile.race_hawaiian==True %}
-                        {{"Race: Native Hawaiian or Other Pacific Islander" }}
-                        {% if profile.race_white==True %}
-                          {{", White" }}
-                        {% endif %}
-                      {% else %}
-                        {{"Race: White" }}
-                      {% endif %}
+                      {{"Race: White" }}
                     {% endif %}
                   {% endif %}
                 {% endif %}
-              </div>
-          </div>
-      </div>
+              {% endif %}
+            </div>
+        </div>
       {% endfor %}
+      </div>
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
   </body>
