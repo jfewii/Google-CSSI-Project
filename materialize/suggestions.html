@@ -33,7 +33,7 @@
         </ul>
       </div>
     </nav>
-      {% for profile in friends %}
+      {% for profile in everyone %}
       <form class="" action="/friends" method="post">
         <div id="friend" style="width: 100%">
             <br><div id="friend_name" style='color: black; font-family: Bitter; font-size: 30px; margin-left: 3px'>{{profile.first_name + " " + profile.last_name }}</div>

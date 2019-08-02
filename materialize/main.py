@@ -244,8 +244,15 @@ class MessagesPage(webapp2.RequestHandler):
 
 class FriendsPage(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        email = users.get_current_user().nickname()
+        profile = ProfileStore.query().filter(ProfileStore.email == email).get()
+        friends = profile.friends
+        friendsDict = {
+            "friends": friends
+        }
         friends_template = the_jinja_env.get_template('/friends.html')
-        self.response.write(friends_template.render())
+        self.response.write(friends_template.render(friendsDict))
 
     def post(self):
         user = users.get_current_user()
@@ -256,8 +263,9 @@ class FriendsPage(webapp2.RequestHandler):
         friendKey = ndb.Key(urlsafe=friendKeyURLSafe)
         userProfile.friends.append(friendKey)
         userProfile.put()
+        time.sleep(0.1)
         friendKey.get()
-        self.redirect('/friends')
+        self.redirect('/suggestions')
 
 class AboutPage(webapp2.RequestHandler):
     def get(self):
@@ -266,12 +274,25 @@ class AboutPage(webapp2.RequestHandler):
 
 class SuggestionsPage(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
         email = users.get_current_user().nickname()
-        friend_query = ProfileStore.query().filter(ProfileStore.email != email)
-        friends = friend_query.fetch()
+        profile = ProfileStore.query().filter(ProfileStore.email == email).get()
+        profile_keys = profile.friends
+        friend_list = []
+        for key in profile_keys:
+            profile = key.get()
+            friend_list.append(profile)
+        print("friend list: " + str(friend_list))
+        everyone = ProfileStore.query().filter(ProfileStore.email != email).fetch()
+        friend1_query = ProfileStore.query().filter(ProfileStore.email != email)
+        for person in friend_list:
+            if person in everyone:
+                everyone.remove(person)
+
+
         suggestion_template = the_jinja_env.get_template('/suggestions.html')
         friends_dict = {
-            "friends": friends
+            "everyone": everyone
         }
         self.response.write(suggestion_template.render(friends_dict))
 
