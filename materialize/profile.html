@@ -38,27 +38,27 @@
     <form class="col s11" id="profile_form" action="/profile" method="post">
       <div class="row">
         <div class="input-field col s6">
-          <input name="first_name" type="text" class="validate" {% if profileInfo %} value={{profileInfo.first_name}} {% endif %}>
+          <input required name="first_name" type="text" class="validate" {% if profileInfo %} value={{profileInfo.first_name}} {% endif %}>
           <label for="first_name">First Name</label>
         </div>
         <div class="input-field col s6">
-          <input name="last_name" type="text" class="validate" {% if profileInfo %} value={{profileInfo.last_name}} {% endif %}>
+          <input required name="last_name" type="text" class="validate" {% if profileInfo %} value={{profileInfo.last_name}} {% endif %}>
           <label for="last_name">Last Name</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <input name="username" type="text" class="validate" {% if profileInfo %} value={{profileInfo.username}} {% endif %}>
+          <input required name="username" type="text" class="validate" {% if profileInfo %} value={{profileInfo.username}} {% endif %}>
           <label for="username">Email you signed up with</label>
         </div>
         <div class="input-field col s6">
-          <input name="password" type="password" class="validate" {% if profileInfo %} value={{profileInfo.password}} {% endif %}>
+          <input required name="password" type="password" class="validate" {% if profileInfo %} value={{profileInfo.password}} {% endif %}>
           <label for="password">Password</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s4">
-          <input name="age" type="text" class="validate" {% if profileInfo %} value={{profileInfo.age}} {% endif %}>
+          <input required name="age" type="text" class="validate" {% if profileInfo %} value={{profileInfo.age}} {% endif %}>
           <label for="age">Age</label>
         </div>
         <div class="input-field col s4">
@@ -71,8 +71,8 @@
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s6" style='color: black'>
-          Race:
+        <div class="input-field col s6" style='color: black; font-family: Abel; font-size: 20px'>
+          Race: (check all that apply)
           <p>
             <label>
               <input name="race_indian" type="checkbox"/ {% if profileInfo.race_indian %} checked {% endif %}>
@@ -96,34 +96,34 @@
             </label>
           </p>
         </div>
-        <div class="input-field col s6" style='color: black'>
-          Ethnicity:
+        <div class="input-field col s6" id='checkbox-group required' style='color: black; font-family: Abel; font-size: 20px' >
+          Ethnicity: (check all that apply)
           <p>
             <label>
-              <input name="ethnicity_indian" type="checkbox"/ {% if profileInfo.ethnicity_indian %} checked {% endif %}>
+              <input name="ethnicity_indian" class='race' type="checkbox"/ {% if profileInfo.ethnicity_indian %} checked {% endif %}>
               <span>Hispanic or Latino</span>
             </label><br>
             <label>
-              <input name="ethnicity_asian" type="checkbox"/ {% if profileInfo.ethnicity_asian %} checked {% endif %}>
+              <input name="ethnicity_asian" class='race' type="checkbox"/ {% if profileInfo.ethnicity_asian %} checked {% endif %}>
               <span>African American</span>
             </label><br>
             <label>
-              <input name="ethnicity_african" type="checkbox"/ {% if profileInfo.ethnicity_african %} checked {% endif %}>
+              <input name="ethnicity_african" class='race' type="checkbox"/ {% if profileInfo.ethnicity_african %} checked {% endif %}>
               <span>European</span>
             </label><br>
             <label>
-              <input name="ethnicity_hawaiian" type="checkbox"/ {% if profileInfo.ethnicity_hawaiian %} checked {% endif %}>
+              <input name="ethnicity_hawaiian" class='race' type="checkbox"/ {% if profileInfo.ethnicity_hawaiian %} checked {% endif %}>
               <span>Pacific Islander</span>
             </label><br>
             <label>
-              <input name="ethnicity_white" type="checkbox"/ {% if profileInfo.ethnicity_white %} checked {% endif %}>
+              <input name="ethnicity_white" class='race'type="checkbox"/ {% if profileInfo.ethnicity_white %} checked {% endif %}>
               <span>Middle Eastern</span>
             </label>
           </p>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s6" style='color: black'>
+        <div class="input-field col s6" style='color: black; font-family: Abel; font-size: 20px'>
           Industry:
           <p>
             <label>
@@ -172,7 +172,7 @@
             </label>
           </p>
         </div>
-        <div class="input-field col s6" style='color: black'>
+        <div class="input-field col s6" style='color: black; font-family: Abel; font-size: 20px'>
           Income:
           <p>
             <label>
@@ -204,11 +204,11 @@
       </div>
       <div class="row">
         <div class="input-field col s4">
-          <input name="city" type="text" class="validate" {% if profileInfo %} value={{profileInfo.city}} {% endif %}>
+          <input required name="city" type="text" class="validate" {% if profileInfo %} value={{profileInfo.city}} {% endif %}>
           <label for="city">City</label>
         </div>
         <div class="input-field col s4">
-          <select class="browser-default" name="state">
+          <select class="browser-default" name="state" required>
             <option value="" disabled selected>Enter your state</option>
             <option name="state" value="AL" {% if profileInfo.state=='AL' %} selected='selected' {% endif %}>Alabama</option>
           	<option name="state" value="AK" {% if profileInfo.state=='AK' %} selected='selected' {% endif %}>Alaska</option>
@@ -264,7 +264,7 @@
           </select>
         </div>
         <div class="input-field col s4">
-          <input name="zip_code" type="text" class="validate" {% if profileInfo %} value={{profileInfo.zip_code}} {% endif %}>
+          <input required name="zip_code" type="text" class="validate" {% if profileInfo %} value={{profileInfo.zip_code}} {% endif %}>
           <label for="zip_code">Zip Code</label>
         </div>
       </div>
