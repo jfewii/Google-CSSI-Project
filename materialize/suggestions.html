@@ -37,26 +37,37 @@
         </ul>
       </div>
     </nav>
-      <div class='row'>
-        {% for profile in friends %}
-        <form class="" action="/friends" method="post">
-          <div id="friend" class='col s6'>
-              <br><div id="friend_name" style='color: black; font-family: Bitter; font-size: 30px; margin-left: 3px'>{{profile.first_name + " " + profile.last_name }}</div>
-              <div id="friend_location" style="width: 50%; color: black; font-family: Bitter; font-size: 18px" >
-                <img src="https://static.thenounproject.com/png/215155-200.png" alt="" style="height: 15px; width: 15px; margin-left: 2px;">
-                {{" " + profile.city + ", " + profile.state}}
-              </div>
-              <div id="friend_age" style='color: black; font-family: Bitter; font-size: 18px'>
-                <img src="https://cdn.onlinewebfonts.com/svg/img_86026.png" alt="" style="height: 15px; width: 15px; margin-left: 2px;">
-                {{" " + profile.age + " Years Old"}}
-              </div>
-              <div id="friend_race" style="width: 80%; color: black; font-family: Bitter; font-size: 18px">
-                <img src="https://image.flaticon.com/icons/svg/32/32441.svg" alt="" style="height: 15px; width: 15px; margin-left: 2px;">
-                {% if profile.race_indian==True %}
-                  {{"Race: American Indian or Alaskan Native"}}
-                  {% if profile.race_asian==True %}
-                    {{", Asian" }}
-                  {% endif %}
+      {% for profile in everyone %}
+      <form class="" action="/friends" method="post">
+        <div id="friend" style="width: 100%">
+            <br><div id="friend_name" style='color: black; font-family: Bitter; font-size: 30px; margin-left: 3px'>{{profile.first_name + " " + profile.last_name }}</div>
+            <div id="friend_location" style="width: 50%; color: black; font-family: Bitter; font-size: 18px" >
+              <img src="https://static.thenounproject.com/png/215155-200.png" alt="" style="height: 15px; width: 15px; margin-left: 2px;">
+              {{" " + profile.city + ", " + profile.state}}
+            </div>
+            <div id="friend_age" style='color: black; font-family: Bitter; font-size: 18px'>
+              <img src="https://cdn.onlinewebfonts.com/svg/img_86026.png" alt="" style="height: 15px; width: 15px; margin-left: 2px;">
+              {{" " + profile.age + " Years Old"}}
+            </div>
+            <div id="friend_race" style="width: 80%; color: black; font-family: Bitter; font-size: 18px">
+              <img src="https://image.flaticon.com/icons/svg/32/32441.svg" alt="" style="height: 15px; width: 15px; margin-left: 2px;">
+              {% if profile.race_indian==True %}
+                {{"Race: American Indian or Alaskan Native"}}
+                {% if profile.race_asian==True %}
+                  {{", Asian" }}
+                {% endif %}
+                {% if profile.race_african==True %}
+                  {{", Black or African American" }}
+                {% endif %}
+                {% if profile.race_hawaiian==True %}
+                  {{", Native Hawaiian or Other Pacific Islander" }}
+                {% endif %}
+                {% if profile.race_white==True %}
+                  {{", White" }}
+                {% endif %}
+              {% else %}
+                {% if profile.race_asian==True %}
+                  {{"Race: Asian" }}
                   {% if profile.race_african==True %}
                     {{", Black or African American" }}
                   {% endif %}
